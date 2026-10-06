@@ -1,0 +1,1580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PhrasePack — Free Travel Phrasebook: 107 Phrases in 12 Languages with Audio</title>
+<meta name="description" content="PhrasePack is a free travel phrasebook with 107 essential phrases in 12 languages — Spanish, French, Japanese, Hindi and more. Hear every phrase spoken aloud, use phonetic spellings, quiz yourself with flashcards, and save favorites. Works fully offline.">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: { extend: {
+    colors: { night:'#101a2e', panel:'#16223c', edge:'#263a5f', cyanx:'#22d3ee', rosex:'#fb7185' },
+    fontFamily: { disp:['"Sora"','ui-sans-serif','system-ui','sans-serif'] }
+  }}
+};
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  html { scroll-behavior:smooth; }
+  body { background:#101a2e; color:#e8eefc; font-family:'Sora',ui-sans-serif,system-ui,sans-serif; }
+  .panel { background:linear-gradient(165deg,#182442 0%,#121b32 100%); border:1px solid #2b3a5f; }
+  .card-hover { transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
+  .card-hover:hover { transform:translateY(-3px); border-color:#22d3ee; box-shadow:0 10px 30px rgba(34,211,238,.14); }
+  .lang-btn { transition:all .15s ease; }
+  .lang-btn.active { background:#22d3ee; color:#101a2e; border-color:#22d3ee; box-shadow:0 0 18px rgba(34,211,238,.45); }
+  .cat-pill.active { background:#fb7185; color:#101a2e; border-color:#fb7185; }
+  .tab-btn.active { background:linear-gradient(120deg,#22d3ee,#0ea5e9); color:#101a2e; }
+  .speak-btn { transition:transform .12s ease, background .12s ease; }
+  .speak-btn:hover { transform:scale(1.12); }
+  .speak-btn.speaking { animation:pulse-ring 1s ease infinite; }
+  @keyframes pulse-ring { 0%{box-shadow:0 0 0 0 rgba(34,211,238,.55)} 100%{box-shadow:0 0 0 14px rgba(34,211,238,0)} }
+  details.faq summary { cursor:pointer; list-style:none; }
+  details.faq summary::-webkit-details-marker { display:none; }
+  details.faq[open] .faq-plus { transform:rotate(45deg); }
+  .faq-plus { transition:transform .2s ease; }
+  .toggle-dot { transition:transform .18s ease; }
+  .quiz-flip { perspective:1200px; }
+  .quiz-inner { transform-style:preserve-3d; transition:transform .45s ease; }
+  .quiz-inner.flipped { transform:rotateY(180deg); }
+  .quiz-face { backface-visibility:hidden; -webkit-backface-visibility:hidden; }
+  .quiz-back { transform:rotateY(180deg); }
+  .grad-text { background:linear-gradient(100deg,#22d3ee,#fb7185); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  input, select { color-scheme:dark; }
+  .article h2 { font-size:1.45rem; font-weight:700; margin:2rem 0 .8rem; color:#fff; }
+  .article h3 { font-size:1.1rem; font-weight:600; margin:1.4rem 0 .6rem; color:#22d3ee; }
+  .article p { margin:.7rem 0; line-height:1.75; color:#c4cfe8; }
+  .article ul, .article ol { margin:.7rem 0 .7rem 1.2rem; line-height:1.75; color:#c4cfe8; }
+  .article li { margin:.35rem 0; }
+  .article table { width:100%; border-collapse:collapse; margin:1rem 0; font-size:.92rem; }
+  .article th, .article td { border:1px solid #2b3a5f; padding:.5rem .7rem; text-align:left; }
+  .article th { background:#182442; color:#22d3ee; }
+</style>
+</head>
+<body id="top" class="min-h-screen">
+
+<!-- ================= HEADER ================= -->
+<header class="sticky top-0 z-50 border-b border-[#2b3a5f]" style="background:rgba(16,26,46,.94);backdrop-filter:blur(10px)">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 py-3 flex items-center justify-between">
+    <a href="#top" class="flex items-center gap-2.5">
+      <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl" style="background:linear-gradient(135deg,#22d3ee,#fb7185)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#101a2e" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.5 0-2.9-.4-4.1-1L3 20l1-5.4A8.5 8.5 0 1 1 21 11.5z"/><path d="M8.5 10.5h7M8.5 13.5h4.5"/></svg>
+      </span>
+      <span class="font-disp text-xl font-extrabold tracking-tight">Phrase<span style="color:#22d3ee">Pack</span></span>
+    </a>
+    <nav class="flex items-center gap-4 text-sm font-medium">
+      <a href="#top" class="text-slate-300 hover:text-white">Home</a>
+      <a href="https://fixoraa.tech" class="text-slate-300 hover:text-white">More Tools</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="mx-auto max-w-6xl px-4 sm:px-6 pt-10 pb-2 text-center">
+  <h1 class="font-disp text-3xl sm:text-5xl font-extrabold leading-tight">Your pocket <span class="grad-text">travel phrasebook</span>,<br class="hidden sm:block"> in 12 languages.</h1>
+  <p class="mt-4 text-slate-300 max-w-2xl mx-auto">107 essential travel phrases — greetings, directions, food, emergencies and more — each with native script, easy phonetics and real spoken audio. Pick a language and start talking.</p>
+  <div class="mt-5 flex flex-wrap items-center justify-center gap-3">
+    <span class="inline-flex items-center gap-2 rounded-full border border-[#22d3ee]/50 bg-[#22d3ee]/10 px-4 py-1.5 text-sm font-semibold text-[#22d3ee]">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+      Unlimited Free Usage
+    </span>
+    <span class="inline-flex items-center gap-2 rounded-full border border-[#fb7185]/50 bg-[#fb7185]/10 px-4 py-1.5 text-sm font-semibold text-[#fb7185]">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.55a11 11 0 0 1 14.08 0M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/></svg>
+      100% Offline · 1,284 phrases baked in
+    </span>
+  </div>
+</section>
+
+<div class="no-print mx-auto max-w-6xl px-4 sm:px-6 pt-4" role="complementary" aria-label="Advertisement">
+  <div class="mx-auto text-center" style="max-width:728px">
+    <span class="block text-[10px] tracking-[0.18em] uppercase text-slate-400 mb-1.5">Advertisement</span>
+    <div class="flex justify-center overflow-hidden">
+      <div class="origin-top scale-[0.44] sm:scale-100 shrink-0">
+        <script>
+          atOptions = { 'key' : '4e68ac77881c17fe128a46565d9a4e8c', 'format' : 'iframe', 'height' : 90, 'width' : 728, 'params' : {} };
+        </script>
+        <script src="https://www.highrevenueformat.com/4e68ac77881c17fe128a46565d9a4e8c/invoke.js"></script>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= TOOL ================= -->
+<main class="mx-auto max-w-6xl px-4 sm:px-6 py-8">
+
+  <!-- View tabs -->
+  <div class="flex flex-wrap justify-center gap-2 mb-6">
+    <button id="tabPhrases" class="tab-btn active rounded-full border border-[#2b3a5f] px-5 py-2 text-sm font-semibold">📖 Phrases</button>
+    <button id="tabQuiz" class="tab-btn rounded-full border border-[#2b3a5f] px-5 py-2 text-sm font-semibold text-slate-300">🃏 Flashcard Quiz</button>
+    <button id="tabFavorites" class="tab-btn rounded-full border border-[#2b3a5f] px-5 py-2 text-sm font-semibold text-slate-300">❤️ Favorites <span id="favCount" class="ml-1 text-xs opacity-80">(0)</span></button>
+  </div>
+
+  <!-- ============ PHRASES VIEW ============ -->
+  <section id="viewPhrases">
+    <div class="panel rounded-2xl p-4 sm:p-6 mb-6">
+      <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
+        <h2 class="font-disp text-lg font-bold">1 · Pick a language</h2>
+        <span id="langName" class="text-sm text-[#22d3ee] font-semibold">Spanish</span>
+      </div>
+      <div id="langPicker" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2"></div>
+    </div>
+
+    <div class="panel rounded-2xl p-4 sm:p-6 mb-6">
+      <h2 class="font-disp text-lg font-bold mb-3">2 · Browse, listen &amp; save</h2>
+      <div class="flex flex-col md:flex-row md:items-center gap-3 mb-4">
+        <div class="relative flex-1">
+          <input id="searchInput" type="text" placeholder="Search phrases — e.g. taxi, thank you, bathroom…"
+            class="w-full rounded-xl bg-[#101a2e] border border-[#2b3a5f] px-4 py-2.5 text-sm placeholder-slate-500 focus:outline-none focus:border-[#22d3ee]">
+        </div>
+        <button id="speakAllBtn" class="rounded-xl border border-[#22d3ee]/60 text-[#22d3ee] px-4 py-2.5 text-sm font-semibold hover:bg-[#22d3ee]/10 whitespace-nowrap">🔊 Play all in view</button>
+        <label class="flex items-center gap-2 text-sm text-slate-300 whitespace-nowrap cursor-pointer select-none">
+          <button id="slowToggle" role="switch" aria-checked="false" class="relative h-6 w-11 rounded-full bg-[#2b3a5f]">
+            <span class="toggle-dot absolute left-0.5 top-0.5 h-5 w-5 rounded-full bg-slate-300"></span>
+          </button>
+          🐢 Slow playback
+        </label>
+        <label class="flex items-center gap-2 text-sm text-slate-300 whitespace-nowrap cursor-pointer select-none">
+          <input id="favOnly" type="checkbox" class="h-4 w-4 accent-[#fb7185]"> Favorites only
+        </label>
+      </div>
+      <div id="catBar" class="flex flex-wrap gap-2 mb-5"></div>
+      <div id="phraseGrid" class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3"></div>
+      <p id="emptyMsg" class="hidden text-center text-slate-400 py-10">No phrases match. Try another search or category.</p>
+    </div>
+  </section>
+
+  <!-- ============ QUIZ VIEW ============ -->
+  <section id="viewQuiz" class="hidden">
+    <div class="panel rounded-2xl p-4 sm:p-8 max-w-2xl mx-auto">
+      <h2 class="font-disp text-xl font-bold text-center mb-1">Flashcard quiz</h2>
+      <p class="text-center text-sm text-slate-400 mb-5">See the English phrase, guess it in <span id="quizLangName" class="text-[#22d3ee] font-semibold">Spanish</span>, then check yourself. Progress is saved per language.</p>
+
+      <div id="quizSetup">
+        <div class="grid grid-cols-3 gap-2 mb-4">
+          <button data-qn="10" class="qn-btn rounded-xl border border-[#2b3a5f] py-2.5 text-sm font-semibold hover:border-[#22d3ee]">10 cards</button>
+          <button data-qn="20" class="qn-btn rounded-xl border border-[#22d3ee] bg-[#22d3ee]/10 py-2.5 text-sm font-semibold">20 cards</button>
+          <button data-qn="40" class="qn-btn rounded-xl border border-[#2b3a5f] py-2.5 text-sm font-semibold hover:border-[#22d3ee]">40 cards</button>
+        </div>
+        <button id="quizStart" class="w-full rounded-xl font-bold py-3 text-[#101a2e]" style="background:linear-gradient(120deg,#22d3ee,#0ea5e9)">Start quiz →</button>
+      </div>
+
+      <div id="quizPlay" class="hidden">
+        <div class="flex items-center justify-between text-xs text-slate-400 mb-2">
+          <span id="quizCounter">Card 1 of 20</span>
+          <span id="quizLiveScore" class="text-[#22d3ee] font-semibold">0 known · 0 learning</span>
+        </div>
+        <div class="h-2 rounded-full bg-[#2b3a5f] mb-5 overflow-hidden"><div id="quizProgress" class="h-full rounded-full transition-all" style="width:0%;background:linear-gradient(90deg,#22d3ee,#fb7185)"></div></div>
+
+        <div class="quiz-flip mb-5">
+          <div id="quizInner" class="quiz-inner relative">
+            <div class="quiz-face panel rounded-2xl p-8 text-center min-h-[220px] flex flex-col items-center justify-center">
+              <span class="text-xs uppercase tracking-widest text-slate-500 mb-2">Say this in <span class="q-lang text-[#22d3ee]">Spanish</span></span>
+              <p id="quizEn" class="text-2xl font-bold"></p>
+              <p id="quizCat" class="text-xs text-slate-500 mt-3"></p>
+            </div>
+            <div class="quiz-face quiz-back absolute inset-0 panel rounded-2xl p-8 text-center min-h-[220px] flex flex-col items-center justify-center" style="border-color:#fb7185">
+              <p id="quizNative" class="text-3xl font-bold mb-2"></p>
+              <p id="quizPhon" class="text-[#fb7185] italic mb-3"></p>
+              <button id="quizSpeak" class="speak-btn rounded-full bg-[#22d3ee]/15 border border-[#22d3ee]/50 text-[#22d3ee] px-4 py-1.5 text-sm font-semibold">🔊 Listen</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2 mb-2">
+          <button id="quizFlipBtn" class="rounded-xl border border-[#fb7185]/60 text-[#fb7185] py-2.5 text-sm font-bold hover:bg-[#fb7185]/10">👁 Reveal answer</button>
+          <button id="quizSkipBtn" class="rounded-xl border border-[#2b3a5f] text-slate-300 py-2.5 text-sm font-semibold hover:border-slate-500">Skip →</button>
+        </div>
+        <div id="quizMarkRow" class="hidden grid-cols-2 gap-2 mb-2">
+          <button id="quizKnew" class="rounded-xl bg-emerald-500/90 text-[#101a2e] py-2.5 text-sm font-bold">✓ I knew it</button>
+          <button id="quizMissed" class="rounded-xl bg-[#fb7185]/90 text-[#101a2e] py-2.5 text-sm font-bold">✗ Still learning</button>
+        </div>
+      </div>
+
+      <div id="quizDone" class="hidden text-center">
+        <p class="text-sm uppercase tracking-widest text-slate-500">Quiz complete</p>
+        <p id="quizScore" class="font-disp text-5xl font-extrabold my-3 grad-text">0%</p>
+        <p id="quizGrade" class="text-[#22d3ee] font-semibold mb-1"></p>
+        <p id="quizSummary" class="text-sm text-slate-400 mb-5"></p>
+        <button id="quizAgain" class="rounded-xl font-bold py-3 px-8 text-[#101a2e]" style="background:linear-gradient(120deg,#22d3ee,#0ea5e9)">Play again</button>
+      </div>
+
+      <div class="mt-8 border-t border-[#2b3a5f] pt-5">
+        <h3 class="font-bold text-sm mb-3">📊 Your progress per language</h3>
+        <div id="progressStats" class="grid sm:grid-cols-2 gap-2"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAVORITES VIEW ============ -->
+  <section id="viewFavorites" class="hidden">
+    <div class="panel rounded-2xl p-4 sm:p-6">
+      <h2 class="font-disp text-lg font-bold mb-1">Saved phrases</h2>
+      <p class="text-sm text-slate-400 mb-4">Tap the ❤️ on any phrase card to pin it here. Saved on this device only.</p>
+      <div id="favGrid" class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3"></div>
+      <p id="favEmpty" class="text-center text-slate-400 py-10">No favorites yet — tap ❤️ on phrases you want to practice.</p>
+    </div>
+  </section>
+
+  <p class="text-center text-xs text-slate-500 mt-6 max-w-2xl mx-auto">🔊 Audio uses your browser's built-in speech (Web Speech API) — voice quality varies by browser and device. Add the page to your home screen and it works offline anywhere.</p>
+</main>
+
+<div class="no-print mx-auto max-w-6xl px-4 sm:px-6 pb-4" role="complementary" aria-label="Advertisement">
+  <div class="mx-auto text-center" style="max-width:728px">
+    <span class="block text-[10px] tracking-[0.18em] uppercase text-slate-400 mb-1.5">Advertisement</span>
+    <div class="flex justify-center overflow-hidden">
+      <script async src="https://js.wpadmngr.com/static/adManager.js" data-admpid="464498"></script>
+    </div>
+  </div>
+</div>
+
+<!-- ================= SEO ARTICLE ================= -->
+<article class="article mx-auto max-w-4xl px-4 sm:px-6 pb-4">
+<h2>The complete guide to travel phrases: speak with confidence anywhere on earth</h2>
+<p>There is a moment on every trip when the phrasebook stops being a nice-to-have and becomes the only thing standing between you and dinner, a taxi, or the right train platform. It usually happens about forty minutes after landing, when the adrenaline of arrival fades and you realise that the menu is in a script you cannot read, the taxi driver does not speak your language, and your phone has no signal. Learning a small set of basic phrases for travel before you fly is the cheapest travel insurance you can buy — it costs nothing, weighs nothing, and quietly transforms the quality of your trip.</p>
+<p>Language is the difference between visiting a place and merely passing through it. Travellers who learn even twenty or thirty local phrases consistently report warmer service, fairer prices, and invitations that monolingual tourists never receive. A shopkeeper in Marrakech, a noodle vendor in Bangkok, a taxi driver in Mexico City — all of them respond differently to a visitor who tries. You do not need fluency. You need the right phrases, decent pronunciation, and the courage to use them out loud.</p>
+
+<h2>Why basic phrases for travel beat translation apps</h2>
+<p>Translation apps are brilliant right up until the moment you need them most. Airport Wi-Fi fails. Your battery dies at 11% in a night market. Roaming charges make you wince. And even when the app works, holding up a glowing phone screen to a busy street-food vendor breaks the human connection that makes travel memorable.</p>
+<p>A memorised phrase, by contrast, is instant, offline, and personal. It works in tunnels, in rural villages, and in the middle of a noisy souk. It also signals respect: you made an effort for their language, and people notice. PhrasePack is built on exactly this philosophy — every one of the 107 phrases in this tool is stored inside the page itself, so it works on a plane in airplane mode, in a subway tunnel, or in a mountain town with zero bars of signal. No downloads, no accounts, no data needed after the first load.</p>
+<p>The trick is choosing the right phrases. Linguists who study travel communication find that a surprisingly small core vocabulary handles the vast majority of tourist interactions. Polite openers (hello, excuse me, please, thank you), questions (where is, how much, do you speak English), and survival lines (I need help, call a doctor, I'm lost) cover roughly nine out of ten situations a traveller will ever face. This page organises its phrasebook into exactly those categories so you can learn the high-value phrases first.</p>
+
+<h2>How to say hello in different languages</h2>
+<p>If you learn only one thing per destination, make it the greeting. "Hello" is the most-used word in any traveller's mouth, and getting it right sets the tone for everything that follows. Here is how to say hello in different languages across the twelve languages in this phrasebook:</p>
+<table>
+<tr><th>Language</th><th>Hello</th><th>Sounds like</th></tr>
+<tr><td>Spanish</td><td>¡Hola!</td><td>OH-lah</td></tr>
+<tr><td>French</td><td>Bonjour</td><td>bohn-ZHOOR</td></tr>
+<tr><td>Italian</td><td>Ciao</td><td>chow</td></tr>
+<tr><td>German</td><td>Hallo</td><td>HAH-lo</td></tr>
+<tr><td>Portuguese</td><td>Olá</td><td>oh-LAH</td></tr>
+<tr><td>Dutch</td><td>Hallo</td><td>HAH-lo</td></tr>
+<tr><td>Japanese</td><td>こんにちは</td><td>kon-nee-chee-wa</td></tr>
+<tr><td>Mandarin</td><td>你好</td><td>nee how</td></tr>
+<tr><td>Hindi</td><td>नमस्ते</td><td>nuh-mus-TAY</td></tr>
+<tr><td>Arabic</td><td>مرحباً</td><td>mar-HAH-ban</td></tr>
+<tr><td>Thai</td><td>สวัสดี</td><td>sah-wah-DEE</td></tr>
+<tr><td>Korean</td><td>안녕하세요</td><td>ahn-nyung-hah-say-yo</td></tr>
+</table>
+<p>Notice how the greeting changes character across cultures. In Japan, こんにちは (konnichiwa) comes with a small bow; in Thailand, สวัสดี (sawasdee) pairs with the wai — palms pressed together. A phrasebook that only gives you words misses half the meaning, which is why learning the cultural gesture alongside the greeting pays off far more than a technically perfect accent.</p>
+
+<h2>Travel phrases Spanish: the twenty that matter most</h2>
+<p>Spanish is the most useful second language a traveller can learn — it unlocks Spain, Mexico, and most of Central and South America, more than twenty countries in total. If you are searching for travel phrases Spanish visitors actually use, start with this power set: <em>hola</em> (hello), <em>gracias</em> (thank you), <em>por favor</em> (please), <em>¿dónde está…?</em> (where is…?), <em>¿cuánto cuesta?</em> (how much?), <em>la cuenta, por favor</em> (the bill, please), <em>¿hablas inglés?</em> (do you speak English?), <em>no entiendo</em> (I don't understand), <em>¿dónde está el baño?</em> (where is the bathroom?), and <em>¡ayuda!</em> (help!).</p>
+<p>Two pronunciation tips make Spanish instantly more intelligible. First, Spanish vowels are pure and short — <em>a, e, i, o, u</em> never glide the way English vowels do, so "gracias" is GRAH-syahs, not "GRAY-shuss." Second, the rolled or tapped <em>r</em> matters less than travellers fear; a single soft tap of the tongue gets you understood everywhere. Use the slow-playback audio button on this page to hear each phrase at reduced speed before you try it yourself.</p>
+
+<h2>The 30 basic phrases for travel that handle 90% of situations</h2>
+<p>Travel researchers and experienced guides converge on a core list. If you memorise these thirty before a trip, you will handle nearly every routine interaction:</p>
+<ol>
+<li>Greetings: hello, good morning, good evening, goodbye, nice to meet you</li>
+<li>Courtesy: please, thank you, you're welcome, excuse me, sorry</li>
+<li>Questions: where is…?, how much?, do you speak English?, what is this?, when?</li>
+<li>Needs: I need…, I want…, can you help me?, I don't understand, speak slowly please</li>
+<li>Food: the menu please, water, the bill please, delicious, no meat / vegetarian</li>
+<li>Movement: taxi, train station, airport, bus stop, stop here, I'm lost</li>
+<li>Safety: help!, call the police, I need a doctor, where is the hospital?</li>
+</ol>
+<p>This is precisely how PhrasePack is organised — ten categories from greetings to emergencies, each containing the phrases travellers reach for most. The flashcard quiz mode then drills them into memory using active recall, which cognitive science consistently ranks as the most effective memorisation technique.</p>
+
+<h2>How to actually pronounce foreign phrases (without a teacher)</h2>
+<p>The phonetic respellings on this page use a simple system: capitalised syllables carry the stress, and sounds are written the way an English speaker would naturally read them. "GRAH-syahs" means stress the first syllable, say it like "grah," and finish with a quick "syahs." It is not the International Phonetic Alphabet — it is something better for travellers: readable at a glance.</p>
+<p>Three techniques will sharpen your pronunciation fast. First, use the slow-playback toggle and shadow the audio: listen once, then repeat the phrase out loud while the sound is still fresh in your ears. Second, exaggerate the stressed syllables — most "bad accent" problems are really stress problems, and hitting the right syllable hard makes you dramatically easier to understand. Third, record yourself on your phone and compare. You will cringe, and then you will improve.</p>
+<p>Tonal languages like Mandarin and Thai deserve special respect: in Mandarin, 你好 (nǐ hǎo) uses falling-rising tones, and getting the tone wrong can genuinely change meaning. The audio button is your friend here — listen several times, and don't be shy about asking locals to correct you. Most people are delighted to help a traveller who is trying.</p>
+
+<h2>Using the flashcard quiz: a 10-minute daily routine</h2>
+<p>Passive reading creates the illusion of learning; testing creates actual learning. That is why this page includes a flashcard quiz with per-language progress tracking. The most effective routine takes ten minutes: pick your destination language, run a 20-card quiz, mark honestly whether you knew each phrase, and repeat daily. The progress bars show your best score, your last score, and how many phrases you've drilled per language, so you can watch yourself improve.</p>
+<p>Spaced repetition multiplies the effect. Instead of cramming fifty phrases the night before your flight, learn ten phrases a day for a week and quiz yourself on the growing set. Each session, the quiz shuffles the deck, so you never memorise the order of the cards — only the phrases themselves. Star the phrases you keep missing with the ❤️ button and review your favourites list before you land.</p>
+
+<h2>Language notes for the twelve languages</h2>
+<p><strong>Spanish, French, Italian, Portuguese:</strong> the Romance family. If you know one, the others feel familiar — <em>gracias / merci / grazie / obrigado</em> all do the same job. Formality matters in French (<em>vous</em>) and Spanish (<em>usted</em>); when in doubt, be formal with strangers.</p>
+<p><strong>German and Dutch:</strong> precise and compound-heavy. German politeness runs on <em>bitte</em> (please) and <em>danke</em> (thank you); Dutch speakers famously switch to excellent English, but trying Dutch first earns enormous goodwill.</p>
+<p><strong>Japanese:</strong> politeness is grammatical. The phrases here use the polite <em>-masu</em> forms, which are exactly right for travellers. A small bow with ありがとう (thank you) goes a long way.</p>
+<p><strong>Mandarin:</strong> tones carry meaning, so listen to the audio carefully. 你好 (hello) and 谢谢 (thank you) alone will carry you through most of a China trip.</p>
+<p><strong>Hindi:</strong> widely understood across India alongside dozens of regional languages. नमस्ते (namaste) with folded hands is universally recognised and appreciated.</p>
+<p><strong>Arabic:</strong> Modern Standard Arabic is understood across the Arab world, though locals speak dialects. Greetings like مرحباً work everywhere; expect warm, lengthy hospitality in return.</p>
+<p><strong>Thai:</strong> the language of smiles. End sentences politely — men say <em>khrap</em>, women say <em>kha</em> — and the wai greeting will make you instant friends.</p>
+<p><strong>Korean:</strong> speech levels matter; these phrases use the polite <em>-yo</em> endings, which are perfect for travellers. 감사합니다 (thank you) is the single most useful word in Korea.</p>
+
+<h2>Emergency phrases: learn these before anything else</h2>
+<p>Every responsible traveller should memorise the emergency set first, before food or shopping: <em>help!</em>, <em>call the police!</em>, <em>call an ambulance!</em>, <em>I need a doctor</em>, <em>where is the hospital?</em>, and <em>what's the emergency number?</em> (112 works across most of Europe; 911 in the US; 100/101/102 in India). Star these in your favourites so they are one tap away when stress makes thinking hard. In a real emergency, pointing at the phrase on your phone screen works even if your voice shakes — another reason an offline phrasebook beats a translation app.</p>
+
+<h2>Final checklist before you fly</h2>
+<ul>
+<li>Run one 20-card quiz in your destination language every day for a week</li>
+<li>Star your emergency phrases and your hotel check-in phrases as favourites</li>
+<li>Listen to the audio for tonal languages (Mandarin, Thai) at slow speed</li>
+<li>Learn the local greeting plus its gesture — bow, wai, or handshake</li>
+<li>Screenshot or bookmark this page so it opens instantly, even offline</li>
+</ul>
+<p>A phrasebook does not make you fluent. It makes you brave — brave enough to open your mouth in a foreign country, which is where every great travel story begins. Pick your language above, press play, and start packing phrases alongside your passport.</p>
+</article>
+
+<!-- ================= FAQS ================= -->
+<section class="mx-auto max-w-4xl px-4 sm:px-6 pb-10">
+<h2 class="font-disp text-2xl font-bold mb-4">Frequently asked questions</h2>
+<div class="space-y-3">
+<details class="faq panel rounded-xl px-5 py-4">
+<summary class="font-semibold flex items-center justify-between gap-3">How many languages and phrases does PhrasePack include? <span class="faq-plus text-[#22d3ee] text-xl leading-none">+</span></summary>
+<p class="mt-2 text-sm text-slate-300 leading-relaxed">PhrasePack includes 107 essential travel phrases in 12 languages: Spanish, French, Italian, German, Portuguese, Dutch, Japanese, Mandarin, Hindi, Arabic, Thai and Korean — 1,284 translations in total. Every phrase shows the native script plus an easy phonetic respelling, and every phrase can be spoken aloud.</p>
+</details>
+<details class="faq panel rounded-xl px-5 py-4">
+<summary class="font-semibold flex items-center justify-between gap-3">Does the audio work offline? <span class="faq-plus text-[#22d3ee] text-xl leading-none">+</span></summary>
+<p class="mt-2 text-sm text-slate-300 leading-relaxed">Yes. All phrase data is baked directly into the page, so the phrasebook works fully offline once loaded. The spoken audio uses your browser's built-in speech synthesis (Web Speech API), which needs no internet and no audio files. Note that voice quality varies by browser and device — Chrome and Edge generally have the most natural voices.</p>
+</details>
+<details class="faq panel rounded-xl px-5 py-4">
+<summary class="font-semibold flex items-center justify-between gap-3">Are the phonetic spellings accurate? <span class="faq-plus text-[#22d3ee] text-xl leading-none">+</span></summary>
+<p class="mt-2 text-sm text-slate-300 leading-relaxed">The phonetics use a traveller-friendly respelling system — capitalised syllables show stress, written the way an English speaker would naturally read them (for example, GRAH-syahs for "gracias"). They are designed for quick, intelligible pronunciation rather than linguistic precision. For tonal languages like Mandarin and Thai, always listen to the audio as well, since tone marks are not shown.</p>
+</details>
+<details class="faq panel rounded-xl px-5 py-4">
+<summary class="font-semibold flex items-center justify-between gap-3">How does the flashcard quiz work? <span class="faq-plus text-[#22d3ee] text-xl leading-none">+</span></summary>
+<p class="mt-2 text-sm text-slate-300 leading-relaxed">Choose a language and a deck size (10, 20 or 40 cards). Each card shows the English phrase — guess the translation, reveal the answer, then mark whether you knew it. Your score, best score and total phrases drilled are saved per language in your browser, so you can track progress across trips.</p>
+</details>
+<details class="faq panel rounded-xl px-5 py-4">
+<summary class="font-semibold flex items-center justify-between gap-3">Which phrases should I learn first for a trip? <span class="faq-plus text-[#22d3ee] text-xl leading-none">+</span></summary>
+<p class="mt-2 text-sm text-slate-300 leading-relaxed">Start with the emergency set (help, call the police, I need a doctor), then greetings and courtesy phrases (hello, please, thank you, excuse me), then the high-frequency questions: where is…?, how much?, and do you speak English? These thirty or so phrases handle the vast majority of travel situations. Star them with the ❤️ button to build a personal quick-reference list.</p>
+</details>
+<details class="faq panel rounded-xl px-5 py-4">
+<summary class="font-semibold flex items-center justify-between gap-3">Is PhrasePack really free? Do I need an account? <span class="faq-plus text-[#22d3ee] text-xl leading-none">+</span></summary>
+<p class="mt-2 text-sm text-slate-300 leading-relaxed">Completely free, with unlimited usage — no account, no signup, no paywall and no watermark. Your favourites and quiz progress are stored only in your own browser's local storage and never leave your device.</p>
+</details>
+</div>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "How many languages and phrases does PhrasePack include?", "acceptedAnswer": { "@type": "Answer", "text": "PhrasePack includes 107 essential travel phrases in 12 languages: Spanish, French, Italian, German, Portuguese, Dutch, Japanese, Mandarin, Hindi, Arabic, Thai and Korean — 1,284 translations in total. Every phrase shows the native script plus an easy phonetic respelling, and every phrase can be spoken aloud." } },
+    { "@type": "Question", "name": "Does the audio work offline?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. All phrase data is baked directly into the page, so the phrasebook works fully offline once loaded. The spoken audio uses your browser's built-in speech synthesis (Web Speech API), which needs no internet and no audio files. Voice quality varies by browser and device." } },
+    { "@type": "Question", "name": "Are the phonetic spellings accurate?", "acceptedAnswer": { "@type": "Answer", "text": "The phonetics use a traveller-friendly respelling system — capitalised syllables show stress, written the way an English speaker would naturally read them. They are designed for quick, intelligible pronunciation rather than linguistic precision." } },
+    { "@type": "Question", "name": "How does the flashcard quiz work?", "acceptedAnswer": { "@type": "Answer", "text": "Choose a language and a deck size (10, 20 or 40 cards). Each card shows the English phrase — guess the translation, reveal the answer, then mark whether you knew it. Your score, best score and total phrases drilled are saved per language in your browser." } },
+    { "@type": "Question", "name": "Which phrases should I learn first for a trip?", "acceptedAnswer": { "@type": "Answer", "text": "Start with the emergency set (help, call the police, I need a doctor), then greetings and courtesy phrases (hello, please, thank you, excuse me), then the high-frequency questions: where is…?, how much?, and do you speak English?" } },
+    { "@type": "Question", "name": "Is PhrasePack really free? Do I need an account?", "acceptedAnswer": { "@type": "Answer", "text": "Completely free, with unlimited usage — no account, no signup, no paywall and no watermark. Your favourites and quiz progress are stored only in your own browser's local storage and never leave your device." } }
+  ]
+}
+</script>
+
+<!-- ================= SHIPPED LOGIC (pure; tested) ================= -->
+<script id="v3-phrasepack-travel-phrasebook-lib">
+/* PhrasePack lib v1 — pure logic + baked-in travel phrase dataset.
+   Pure functions only: NO document/window/speechSynthesis access.
+   TTS wiring lives in the page template's separate UI script. */
+'use strict';
+
+/* ---------- languages (code, display name, BCP-47 voice locale for TTS) ---------- */
+const PP_LANGS = [
+  { code: 'es', name: 'Spanish',    tts: 'es-ES', flag: '🇪🇸' },
+  { code: 'fr', name: 'French',     tts: 'fr-FR', flag: '🇫🇷' },
+  { code: 'it', name: 'Italian',    tts: 'it-IT', flag: '🇮🇹' },
+  { code: 'de', name: 'German',     tts: 'de-DE', flag: '🇩🇪' },
+  { code: 'pt', name: 'Portuguese', tts: 'pt-BR', flag: '🇧🇷' },
+  { code: 'nl', name: 'Dutch',      tts: 'nl-NL', flag: '🇳🇱' },
+  { code: 'ja', name: 'Japanese',   tts: 'ja-JP', flag: '🇯🇵' },
+  { code: 'zh', name: 'Mandarin',   tts: 'zh-CN', flag: '🇨🇳' },
+  { code: 'hi', name: 'Hindi',      tts: 'hi-IN', flag: '🇮🇳' },
+  { code: 'ar', name: 'Arabic',     tts: 'ar-SA', flag: '🇸🇦' },
+  { code: 'th', name: 'Thai',       tts: 'th-TH', flag: '🇹🇭' },
+  { code: 'ko', name: 'Korean',     tts: 'ko-KR', flag: '🇰🇷' }
+];
+
+const PP_CATS = [
+  { id: 'greetings',   name: 'Greetings' },
+  { id: 'essentials',  name: 'Essentials' },
+  { id: 'directions',  name: 'Directions' },
+  { id: 'transport',   name: 'Transport' },
+  { id: 'hotel',       name: 'Hotel' },
+  { id: 'food',        name: 'Food & Drink' },
+  { id: 'shopping',    name: 'Shopping' },
+  { id: 'emergencies', name: 'Emergencies' },
+  { id: 'numbers',     name: 'Numbers' },
+  { id: 'time',        name: 'Time' }
+];
+
+/* ---------- phrase dataset ----------
+   Each phrase: id, cat, en, then per-language [native script, phonetic respelling]. */
+const PP_PHRASES = [
+{id:'hello',cat:'greetings',en:'Hello!',
+ es:['¡Hola!','OH-lah'],fr:['Bonjour','bohn-ZHOOR'],it:['Ciao','chow'],
+ de:['Hallo','HAH-lo'],pt:['Olá','oh-LAH'],nl:['Hallo','HAH-lo'],
+ ja:['こんにちは','kon-nee-chee-wa'],zh:['你好','nee how'],
+ hi:['नमस्ते','nuh-mus-TAY'],ar:['مرحباً','mar-HAH-ban'],
+ th:['สวัสดี','sah-wah-DEE'],ko:['안녕하세요','ahn-nyung-hah-say-yo']},
+{id:'good-morning',cat:'greetings',en:'Good morning',
+ es:['Buenos días','BWAY-nohs DEE-ahs'],fr:['Bonjour','bohn-ZHOOR'],it:['Buongiorno','bwon-JOR-noh'],
+ de:['Guten Morgen','GOO-ten MOR-gen'],pt:['Bom dia','bong DEE-ah'],nl:['Goedemorgen','KHOOD-uh-MOR-khun'],
+ ja:['おはようございます','oh-hah-YOH goh-zai-mahs'],zh:['早上好','zow-shahng how'],
+ hi:['सुप्रभात','soo-prah-BHAHT'],ar:['صباح الخير','sah-BAHH al-KHAYR'],
+ th:['สวัสดีตอนเช้า','sah-wah-DEE ton-chow'],ko:['좋은 아침','joh-oon ah-chim']},
+{id:'good-evening',cat:'greetings',en:'Good evening',
+ es:['Buenas noches','BWAY-nahs NOH-ches'],fr:['Bonsoir','bohn-SWAR'],it:['Buonasera','bwoh-nah-SEH-rah'],
+ de:['Guten Abend','GOO-ten AH-bent'],pt:['Boa noite','BOH-ah NOY-chee'],nl:['Goedenavond','KHOOD-uhn-AH-vont'],
+ ja:['こんばんは','kon-bahn-wah'],zh:['晚上好','wahn-shahng how'],
+ hi:['शुभ संध्या','shoobh sun-DHYAH'],ar:['مساء الخير','mah-SAH al-KHAYR'],
+ th:['สวัสดีตอนเย็น','sah-wah-DEE ton-yen'],ko:['좋은 저녁','joh-oon juh-nyuk']},
+{id:'good-night',cat:'greetings',en:'Good night',
+ es:['Buenas noches','BWAY-nahs NOH-ches'],fr:['Bonne nuit','bon NWEE'],it:['Buonanotte','bwoh-nah-NOT-teh'],
+ de:['Gute Nacht','GOO-tuh nahkht'],pt:['Boa noite','BOH-ah NOY-chee'],nl:['Goedenacht','KHOOD-uh-nahkht'],
+ ja:['おやすみなさい','oh-yah-soo-mee-nah-sai'],zh:['晚安','wahn ahn'],
+ hi:['शुभ रात्रि','shoobh RAH-tree'],ar:['ليلة سعيدة','LAY-lah sah-EE-dah'],
+ th:['ราตรีสวัสดิ์','rah-tree sah-waht'],ko:['좋은 밤','joh-oon bahm']},
+{id:'goodbye',cat:'greetings',en:'Goodbye',
+ es:['Adiós','ah-dee-OHS'],fr:['Au revoir','oh ruh-VWAR'],it:['Arrivederci','ah-ree-veh-DEHR-chee'],
+ de:['Tschüss','tchoos'],pt:['Tchau','chow'],nl:['Tot ziens','tot ZEENS'],
+ ja:['さようなら','sah-yoh-nah-rah'],zh:['再见','zai jee-en'],
+ hi:['अलविदा','al-vee-DAH'],ar:['مع السلامة','mah-ah sah-lah-MAH'],
+ th:['ลาก่อน','lah gaun'],ko:['안녕히 가세요','ahn-nyung-hee gah-say-yo']},
+{id:'see-you-later',cat:'greetings',en:'See you later',
+ es:['Hasta luego','AHS-tah loo-EH-goh'],fr:['À tout à l\u2019heure','ah toot ah LEUR'],it:['A dopo','ah DOH-poh'],
+ de:['Bis später','bis SHPAY-ter'],pt:['Até mais','ah-TEH MAIS'],nl:['Tot later','tot LAH-ter'],
+ ja:['またね','mah-tah-neh'],zh:['待会儿见','dai-hwar jee-en'],
+ hi:['फिर मिलेंगे','phir mee-LEN-gay'],ar:['أراك لاحقاً','ah-RAH-kah lah-hee-QAHN'],
+ th:['เจอกันใหม่','jur gahn mai'],ko:['나중에 봐요','nah-joong-eh bwah-yo']},
+{id:'how-are-you',cat:'greetings',en:'How are you?',
+ es:['¿Cómo estás?','KOH-moh ehs-TAHS'],fr:['Comment ça va ?','koh-mahn sah VAH'],it:['Come stai?','KOH-meh STAI'],
+ de:['Wie geht\u2019s?','vee GAYTS'],pt:['Como vai?','KOH-moo VAI'],nl:['Hoe gaat het?','hoo KHAHT het'],
+ ja:['お元気ですか','oh-gen-KEE des-kah'],zh:['你好吗','nee how mah'],
+ hi:['आप कैसे हैं?','aap KAY-say hain'],ar:['كيف حالك؟','KAY-fah HAH-lak'],
+ th:['สบายดีไหม','sah-bai-DEE mai'],ko:['어떻게 지내세요?','uh-ttuh-keh jee-neh-say-yo']},
+{id:'nice-to-meet-you',cat:'greetings',en:'Nice to meet you',
+ es:['Encantado','en-kahn-TAH-doh'],fr:['Enchanté','ahn-shahn-TAY'],it:['Piacere','pee-ah-CHEH-reh'],
+ de:['Freut mich','froyt mikh'],pt:['Prazer','prah-ZEHR'],nl:['Aangenaam','AHN-khuh-nahm'],
+ ja:['はじめまして','hah-jee-meh-mahsh-teh'],zh:['很高兴认识你','hun gow-sheeng ren-shir nee'],
+ hi:['आपसे मिलकर खुशी हुई','aap-say MIL-kar KHO-shi hoo-ee'],ar:['تشرفت بمعرفتك','ta-shar-RAF-too bih-MAH-rih-fat-eek'],
+ th:['ยินดีที่ได้รู้จัก','yin-DEE tee dai ROO-jak'],ko:['만나서 반가워요','mahn-nah-suh bahn-gah-wuh-yo']},
+{id:'my-name-is',cat:'greetings',en:'My name is\u2026',
+ es:['Me llamo\u2026','meh YAH-moh'],fr:['Je m\u2019appelle\u2026','zhuh mah-PEL'],it:['Mi chiamo\u2026','mee KYAH-moh'],
+ de:['Ich heiße\u2026','ikh HAI-suh'],pt:['Meu nome é\u2026','MEH-oo NOH-mee EH'],nl:['Ik heet\u2026','ik HAYT'],
+ ja:['私の名前は\u2026','wah-tah-shee noh nah-mah-eh wah'],zh:['我叫\u2026','wuh jow'],
+ hi:['मेरा नाम\u2026','MEH-rah NAAM'],ar:['اسمي\u2026','IS-mee'],
+ th:['ฉันชื่อ\u2026','chan CHEU'],ko:['제 이름은\u2026','jeh ee-roo-moon']},
+{id:'where-are-you-from',cat:'greetings',en:'Where are you from?',
+ es:['¿De dónde eres?','deh DOHN-deh EH-res'],fr:['D\u2019où venez-vous ?','doo vuh-NAY voo'],it:['Di dove sei?','dee DOH-veh SAY'],
+ de:['Woher kommst du?','voh-HEHR komst doo'],pt:['De onde você é?','jee OHN-jee voh-SEH EH'],nl:['Waar kom je vandaan?','vahr kom yuh vahn-DAHN'],
+ ja:['どこから来ましたか','DOH-koh kah-rah kee-mahsh-tah kah'],zh:['你从哪里来？','nee tsong nah-lee LAI'],
+ hi:['आप कहाँ से हैं?','aap kah-HAHN say hain'],ar:['من أين أنت؟','min AY-nah AHN-tah'],
+ th:['คุณมาจากไหน','koon mah-jahk NAI'],ko:['어디에서 왔어요?','uh-dee-eh-suh wah-suh-yo']},
+{id:'have-a-good-day',cat:'greetings',en:'Have a good day',
+ es:['¡Que tengas un buen día!','keh TEN-gahs oon BWEN DEE-ah'],fr:['Bonne journée !','bun zhoor-NAY'],it:['Buona giornata!','BWOH-nah jor-NAH-tah'],
+ de:['Schönen Tag noch!','SHUH-nun tahk nokh'],pt:['Tenha um bom dia!','TEN-yah oong bong DEE-ah'],nl:['Fijne dag!','FAI-nuh dahkh'],
+ ja:['良い一日を','YOI ee-chee-nee-chee oh'],zh:['祝你有美好的一天','joo nee yoh MAY-how duh ee-tee-ahn'],
+ hi:['आपका दिन शुभ हो','AAP-kah deen shoobh hoh'],ar:['أتمنى لك يوماً سعيداً','ah-tah-MAHN-nah lah-kah YOH-mahn sah-EE-dahn'],
+ th:['ขอให้มีวันที่ดี','kor hai mee WAHN tee dee'],ko:['좋은 하루 보내세요','joh-oon hah-roo boh-neh-say-yo']},
+{id:'welcome',cat:'greetings',en:'Welcome',
+ es:['¡Bienvenido!','bee-en-veh-NEE-doh'],fr:['Bienvenue !','byehng-vuh-NOO'],it:['Benvenuto!','ben-veh-NOO-toh'],
+ de:['Willkommen!','vil-KOM-men'],pt:['Bem-vindo!','behng-VEEN-doo'],nl:['Welkom!','vel-KOM'],
+ ja:['ようこそ','yoh-koh-soh'],zh:['欢迎','hwahn yeeng'],
+ hi:['स्वागत है','SWAH-gat hai'],ar:['أهلاً وسهلاً','AH-lahn wah SAH-lahn'],
+ th:['ยินดีต้อนรับ','yin-DEE taun-RAHP'],ko:['환영합니다','hwahn-yung-hahm-nee-dah']},
+{id:'yes',cat:'essentials',en:'Yes',
+ es:['Sí','see'],fr:['Oui','wee'],it:['Sì','see'],
+ de:['Ja','yah'],pt:['Sim','seeng'],nl:['Ja','yah'],
+ ja:['はい','hai'],zh:['是','shir'],
+ hi:['हाँ','hahn'],ar:['نعم','NAH-ahm'],
+ th:['ใช่','chai'],ko:['네','neh']},
+{id:'no',cat:'essentials',en:'No',
+ es:['No','noh'],fr:['Non','nohn'],it:['No','noh'],
+ de:['Nein','nine'],pt:['Não','nown'],nl:['Nee','nay'],
+ ja:['いいえ','ee-ee-eh'],zh:['不是','boo shir'],
+ hi:['नहीं','nah-HEEN'],ar:['لا','lah'],
+ th:['ไม่','mai'],ko:['아니요','ah-nee-yo']},
+{id:'thank-you',cat:'essentials',en:'Thank you',
+ es:['Gracias','GRAH-syahs'],fr:['Merci','mehr-SEE'],it:['Grazie','GRAH-tsyeh'],
+ de:['Danke','DAHN-kuh'],pt:['Obrigado','oh-bree-GAH-doo'],nl:['Dank je','dahnk yuh'],
+ ja:['ありがとう','ah-ree-gah-TOH'],zh:['谢谢','shyeh-shyeh'],
+ hi:['धन्यवाद','dhun-yah-VAHD'],ar:['شكراً','SHOOK-rahn'],
+ th:['ขอบคุณ','kaup-KOON'],ko:['감사합니다','kahm-sah-hahm-nee-dah']},
+{id:'thanks-a-lot',cat:'essentials',en:'Thanks a lot',
+ es:['Muchas gracias','MOO-chahs GRAH-syahs'],fr:['Merci beaucoup','mehr-SEE boh-KOO'],it:['Grazie mille','GRAH-tsyeh MEEL-leh'],
+ de:['Vielen Dank','FEE-len dahnk'],pt:['Muito obrigado','MOY-too oh-bree-GAH-doo'],nl:['Hartelijk bedankt','HAR-tuh-lik buh-DAHNKT'],
+ ja:['どうもありがとう','DOH-moh ah-ree-gah-TOH'],zh:['非常感谢','fay-chahng gahn-shyeh'],
+ hi:['बहुत-बहुत धन्यवाद','bah-HOOT-bah-HOOT dhun-yah-VAHD'],ar:['شكراً جزيلاً','SHOOK-rahn jah-ZEE-lahn'],
+ th:['ขอบคุณมาก','kaup-KOON mahk'],ko:['정말 감사합니다','jung-mahl kahm-sah-hahm-nee-dah']},
+{id:'youre-welcome',cat:'essentials',en:'You\u2019re welcome',
+ es:['De nada','deh NAH-dah'],fr:['De rien','duh ryang'],it:['Prego','PREH-goh'],
+ de:['Gern geschehen','gern guh-SHAY-hen'],pt:['De nada','jee NAH-dah'],nl:['Graag gedaan','khrahkh khuh-DAHN'],
+ ja:['どういたしまして','doh-ee-tah-shee-mahsh-teh'],zh:['不客气','boo kuh-chee'],
+ hi:['कोई बात नहीं','KOI baht nah-HEEN'],ar:['على الرحب','ah-lah ar-RAH-hib'],
+ th:['ด้วยความยินดี','duai kwahm yin-DEE'],ko:['천만에요','chun-mahn-eh-yo']},
+{id:'please',cat:'essentials',en:'Please',
+ es:['Por favor','por fah-VOR'],fr:['S\u2019il vous plaît','seel voo PLEH'],it:['Per favore','per fah-VOH-reh'],
+ de:['Bitte','BIT-tuh'],pt:['Por favor','poor fah-VOR'],nl:['Alstublieft','AHLS-too-bleeft'],
+ ja:['お願いします','oh-neh-GAI shee-mahs'],zh:['请','cheeng'],
+ hi:['कृपया','KRIP-yah'],ar:['من فضلك','min FAHD-lik'],
+ th:['กรุณา','gah-roo-NAH'],ko:['제발','jeh-bahl']},
+{id:'excuse-me',cat:'essentials',en:'Excuse me / Sorry',
+ es:['Perdón','pair-DOHN'],fr:['Pardon','par-DOHN'],it:['Scusi','SKOO-zee'],
+ de:['Entschuldigung','ent-SHOOL-dee-gung'],pt:['Desculpe','desh-KOOL-pah'],nl:['Pardon','par-DON'],
+ ja:['すみません','soo-mee-mah-SEN'],zh:['对不起','dway-boo-chee'],
+ hi:['माफ़ कीजिए','MAHF KEE-jee-ay'],ar:['عفواً','AF-wahn'],
+ th:['ขอโทษ','kor-TOHT'],ko:['실례합니다','sheel-leh-hahm-nee-dah']},
+{id:'i-dont-understand',cat:'essentials',en:'I don\u2019t understand',
+ es:['No entiendo','noh en-TYEN-doh'],fr:['Je ne comprends pas','zhuh nuh kohn-PRAHN pah'],it:['Non capisco','non kah-PEES-koh'],
+ de:['Ich verstehe nicht','ikh fair-SHTAY-heh nikht'],pt:['Não entendo','nown en-TEN-doo'],nl:['Ik begrijp het niet','ik buh-KHRAYP het neet'],
+ ja:['わかりません','wah-kah-ree-mah-SEN'],zh:['我不明白','wuh boo meeng-BAI'],
+ hi:['मैं समझा नहीं','main SUM-jhah nah-HEEN'],ar:['لا أفهم','lah AF-hahm'],
+ th:['ฉันไม่เข้าใจ','chan mai KOW-jai'],ko:['이해하지 못했어요','ee-heh-hah-jee mot-heh-suh-yo']},
+{id:'do-you-speak-english',cat:'essentials',en:'Do you speak English?',
+ es:['¿Hablas inglés?','AH-blahs een-GLEHS'],fr:['Parlez-vous anglais ?','par-lay-voo ahn-GLEH'],it:['Parli inglese?','PAR-lee een-GLEH-zeh'],
+ de:['Sprechen Sie Englisch?','SHPREKH-en zee ENG-lish'],pt:['Você fala inglês?','voh-SEH FAH-lah een-GLEHS'],nl:['Spreek je Engels?','sprehk yuh ENG-uls'],
+ ja:['英語を話せますか','AY-goh oh hah-seh-mahs kah'],zh:['你会说英语吗？','nee hway shwoh EENG-yoo mah'],
+ hi:['क्या आप अंग्रेज़ी बोलते हैं?','KYAH aap un-GRAY-zee BOHL-tay hain'],ar:['هل تتكلم الإنجليزية؟','hahl tah-tah-KAHL-lah-moo al-een-glee-ZEE-yah'],
+ th:['คุณพูดภาษาอังกฤษได้ไหม','koon POOT pah-sah ahng-grit DAI mai'],ko:['영어를 할 수 있어요?','yung-uh-rool hahl soo ee-suh-yo']},
+{id:'i-speak-a-little',cat:'essentials',en:'I speak only a little\u2026',
+ es:['Solo hablo un poco\u2026','SOH-loh AH-bloh oon POH-koh'],fr:['Je parle juste un peu\u2026','zhuh parhl zhoost ung POH'],it:['Parlo solo un po\u2019\u2026','PAR-loh SOH-loh oon poh'],
+ de:['Ich spreche nur ein bisschen\u2026','ikh SHPREKH-eh noor ain BIS-shen'],pt:['Só falo um pouco\u2026','soh FAH-loo oong POH-koo'],nl:['Ik spreek maar een beetje\u2026','ik sprehk mahr ayn BAY-tyuh'],
+ ja:['少しだけ話せます','soo-KOH-shee dah-keh hah-seh-mahs'],zh:['我只会说一点\u2026','wuh jir hway shwoh ee-DYEN'],
+ hi:['मैं थोड़ा-थोड़ा बोलता हूँ\u2026','main THOH-dah-thoh-dah BOHL-tah hoon'],ar:['أتكلم قليلاً فقط\u2026','ah-tah-KAHL-lah-moo qah-LEE-lahn FAH-qat'],
+ th:['ฉันพูดได้นิดหน่อย\u2026','chan POOT dai NIT-noi'],ko:['조금만 할 수 있어요\u2026','joh-goom-mahn hahl soo ee-suh-yo']},
+{id:'can-you-help-me',cat:'essentials',en:'Can you help me?',
+ es:['¿Me puedes ayudar?','meh PWEH-des ah-yoo-DAHR'],fr:['Pouvez-vous m\u2019aider ?','poo-vay-voo meh-DAY'],it:['Puoi aiutarmi?','PWOH-ee ah-yoo-TAHR-mee'],
+ de:['Kannst du mir helfen?','kahnst doo meer HELF-en'],pt:['Você pode me ajudar?','voh-SEH POH-jee mee ah-zhoo-DAHR'],nl:['Kun je me helpen?','kun yuh muh HEL-pun'],
+ ja:['手伝ってもらえますか','teh-tsoot-teh-moh moh-rah-eh-mahs kah'],zh:['你能帮我吗？','nee nung bahng wuh mah'],
+ hi:['क्या आप मेरी मदद कर सकते हैं?','KYAH aap MEH-ree mah-DAHD kar SAK-tay hain'],ar:['هل يمكنك مساعدتي؟','hahl yoom-KIH-noo-kah moo-sah-ah-DAH-tee'],
+ th:['คุณช่วยฉันได้ไหม','koon CHUAI chan DAI mai'],ko:['도와주실 수 있어요?','doh-wah-joo-sheel soo ee-suh-yo']},
+{id:'what-is-this',cat:'essentials',en:'What is this?',
+ es:['¿Qué es esto?','keh ehs EHS-toh'],fr:['Qu\u2019est-ce que c\u2019est ?','kehs kuh SEH'],it:['Cos\u2019è questo?','koh-ZEH KWEH-stoh'],
+ de:['Was ist das?','vahs ist dahs'],pt:['O que é isto?','oo kee EH EESH-too'],nl:['Wat is dit?','vaht is dit'],
+ ja:['これは何ですか','koh-reh wah NAHN des-kah'],zh:['这是什么？','jir shir SHIR-muh'],
+ hi:['यह क्या है?','yeh KYAH hai'],ar:['ما هذا؟','mah HAH-dhah'],
+ th:['นี่คืออะไร','NEE keu ah-RAI'],ko:['이게 뭐예요?','ee-geh mwoh-yeh-yo']},
+{id:'where-is',cat:'essentials',en:'Where is\u2026?',
+ es:['¿Dónde está\u2026?','DOHN-deh ehs-TAH'],fr:['Où est\u2026 ?','oo EH'],it:['Dov\u2019è\u2026?','doh-VEH'],
+ de:['Wo ist\u2026?','voh ist'],pt:['Onde fica\u2026?','OHN-jee FEE-kah'],nl:['Waar is\u2026?','vahr is'],
+ ja:['\u2026はどこですか','wah DOH-koh des-kah'],zh:['\u2026在哪里？','zai nah-LEE'],
+ hi:['\u2026कहाँ है?','kah-HAHN hai'],ar:['أين\u2026؟','AY-nah'],
+ th:['\u2026อยู่ที่ไหน','yoo TEE nai'],ko:['\u2026은 어디예요?','oon uh-dee-yeh-yo']},
+{id:'i-need',cat:'essentials',en:'I need\u2026',
+ es:['Necesito\u2026','neh-seh-SEE-toh'],fr:['J\u2019ai besoin de\u2026','zhay buh-ZWAHN duh'],it:['Ho bisogno di\u2026','oh bee-ZOHN-yoh dee'],
+ de:['Ich brauche\u2026','ikh BROW-khuh'],pt:['Preciso de\u2026','preh-SEE-zoo jee'],nl:['Ik heb\u2026 nodig','ik heb NOH-dikh'],
+ ja:['\u2026が必要です','gah hee-TSOO-yoh des'],zh:['我需要\u2026','wuh shoo-YOW'],
+ hi:['मुझे\u2026 चाहिए','MOOJ-heh CHAH-hee-ay'],ar:['أحتاج إلى\u2026','AHT-tah-joo EE-lah'],
+ th:['ฉันต้องการ\u2026','chan taung-GAHN'],ko:['\u2026이 필요해요','ee peel-yoh-heh-yo']},
+{id:'slow-please',cat:'essentials',en:'Please speak slowly',
+ es:['Más despacio, por favor','mahs dehs-PAH-syoh por fah-VOR'],fr:['Plus lentement, s\u2019il vous plaît','ploo lahnt-MAHN seel voo PLEH'],it:['Più lentamente, per favore','pyoo len-tah-MEN-teh per fah-VOH-reh'],
+ de:['Langsamer, bitte','LAHNG-zah-mer BIT-tuh'],pt:['Mais devagar, por favor','mais dee-vah-GAHR poor fah-VOR'],nl:['Langzamer, alstublieft','LAHNG-zah-mer AHLS-too-bleeft'],
+ ja:['ゆっくり話してください','YOOK-koo-ree hah-nahsh-teh koo-dah-SAI'],zh:['请说慢一点','cheeng shwoh MAHN ee-DYEN'],
+ hi:['धीरे बोलिए','DHEE-ray BOH-lee-ay'],ar:['تكلم ببطء من فضلك','tah-KAHL-lahm bee-BOOT-een min FAHD-lik'],
+ th:['พูดช้าๆหน่อย','POOT chah-chah NOI'],ko:['천천히 말해 주세요','chun-chun-hee mahl-heh joo-say-yo']},
+{id:'left',cat:'directions',en:'Left',
+ es:['Izquierda','ees-KYAIR-dah'],fr:['À gauche','ah GOHSH'],it:['A sinistra','ah see-NEES-trah'],
+ de:['Links','links'],pt:['Esquerda','esh-KEHR-dah'],nl:['Links','links'],
+ ja:['左','hee-dah-REE'],zh:['左','zwoh'],
+ hi:['बाएँ','BAH-ayn'],ar:['يسار','yah-SAHR'],
+ th:['ซ้าย','SAI'],ko:['왼쪽','wen-jjohk']},
+{id:'right',cat:'directions',en:'Right',
+ es:['Derecha','deh-REH-chah'],fr:['À droite','ah DRWAHT'],it:['A destra','ah DEHS-trah'],
+ de:['Rechts','rekhts'],pt:['Direita','jee-RAY-tah'],nl:['Rechts','rekhts'],
+ ja:['右','mee-GHEE'],zh:['右','yoh'],
+ hi:['दाएँ','DAH-ayn'],ar:['يمين','yah-MEEN'],
+ th:['ขวา','KWAH'],ko:['오른쪽','oh-roon-jjohk']},
+{id:'straight',cat:'directions',en:'Straight ahead',
+ es:['Todo recto','TOH-doh REHK-toh'],fr:['Tout droit','too DRWAH'],it:['Dritto','DREET-toh'],
+ de:['Geradeaus','guh-rah-duh-OWS'],pt:['Sempre em frente','SEM-pree ayng FREN-chee'],nl:['Rechtdoor','REHKHT-dohr'],
+ ja:['まっすぐ','mahs-SOO-goo'],zh:['直走','jir zoh'],
+ hi:['सीधे','SEE-dhay'],ar:['إلى الأمام','EE-lah al-ah-MAHM'],
+ th:['ตรงไป','trong PAI'],ko:['직진','jeek-jeen']},
+{id:'where-is-the-bathroom',cat:'directions',en:'Where is the bathroom?',
+ es:['¿Dónde está el baño?','DOHN-deh ehs-TAH el BAH-nyoh'],fr:['Où sont les toilettes ?','oo son lay twa-LET'],it:['Dov\u2019è il bagno?','doh-VEH eel BAH-nyoh'],
+ de:['Wo ist die Toilette?','voh ist dee toh-ah-LET-tuh'],pt:['Onde fica o banheiro?','OHN-jee FEE-kah oo bahn-YAY-roo'],nl:['Waar is het toilet?','vahr is het twa-LET'],
+ ja:['トイレはどこですか','TOI-reh wah DOH-koh des-kah'],zh:['洗手间在哪里？','shee-shoh-jee-ahn zai nah-LEE'],
+ hi:['शौचालय कहाँ है?','SHOW-chah-lai kah-HAHN hai'],ar:['أين الحمّام؟','AY-nah al-hahm-MAHM'],
+ th:['ห้องน้ำอยู่ที่ไหน','HONG-nahm yoo TEE nai'],ko:['화장실은 어디예요?','hwah-jahng-shee-roon uh-dee-yeh-yo']},
+{id:'where-is-the-station',cat:'directions',en:'Where is the train station?',
+ es:['¿Dónde está la estación de tren?','DOHN-deh ehs-TAH lah ehs-tah-SYOHN deh tren'],fr:['Où est la gare ?','oo EH lah GAHR'],it:['Dov\u2019è la stazione?','doh-VEH lah stah-TSYOH-neh'],
+ de:['Wo ist der Bahnhof?','voh ist dair BAHN-hohf'],pt:['Onde fica a estação de trem?','OHN-jee FEE-kah ah ehs-tah-SOWN jee trayng'],nl:['Waar is het station?','vahr is het stah-SHYOHN'],
+ ja:['駅はどこですか','EH-kee wah DOH-koh des-kah'],zh:['火车站在哪里？','hwoh-chuh-jahn zai nah-LEE'],
+ hi:['रेलवे स्टेशन कहाँ है?','RAIL-way STAY-shun kah-HAHN hai'],ar:['أين محطة القطار؟','AY-nah mah-HAHT-tah-too al-qee-TAHR'],
+ th:['สถานีรถไฟอยู่ที่ไหน','sah-TAH-nee rot-FAI yoo TEE nai'],ko:['기차역은 어디예요?','kee-chah-yuh-goon uh-dee-yeh-yo']},
+{id:'where-is-the-airport',cat:'directions',en:'Where is the airport?',
+ es:['¿Dónde está el aeropuerto?','DOHN-deh ehs-TAH el ah-eh-roh-PWEHR-toh'],fr:['Où est l\u2019aéroport ?','oo EH lah-eh-roh-POR'],it:['Dov\u2019è l\u2019aeroporto?','doh-VEH lah-eh-roh-POR-toh'],
+ de:['Wo ist der Flughafen?','voh ist dair FLOOK-hah-fen'],pt:['Onde fica o aeroporto?','OHN-jee FEE-kah oo ah-eh-roh-POR-too'],nl:['Waar is het vliegveld?','vahr is het FLEEKH-velt'],
+ ja:['空港はどこですか','koo-KOH wah DOH-koh des-kah'],zh:['机场在哪里？','jee-chahng zai nah-LEE'],
+ hi:['हवाई अड्डा कहाँ है?','hah-VAH-ee AHD-dah kah-HAHN hai'],ar:['أين المطار؟','AY-nah al-mah-TAHR'],
+ th:['สนามบินอยู่ที่ไหน','sah-NAHM-been yoo TEE nai'],ko:['공항은 어디예요?','gong-hahng-oon uh-dee-yeh-yo']},
+{id:'how-far',cat:'directions',en:'How far is it?',
+ es:['¿Qué tan lejos está?','keh tahn LEH-khohs ehs-TAH'],fr:['C\u2019est loin ?','seh LWAHN'],it:['Quanto è lontano?','KWAHN-toh eh lon-TAH-noh'],
+ de:['Wie weit ist es?','vee vait ist es'],pt:['É longe?','eh LOHN-zhee'],nl:['Is het ver?','is het vair'],
+ ja:['遠いですか','toh-EE des-kah'],zh:['有多远？','yoh dwuh yoo-AHN'],
+ hi:['कितनी दूर है?','KIT-nee door hai'],ar:['هل هو بعيد؟','hahl HOO-wah bah-EED'],
+ th:['ไกลไหม','glai MAI'],ko:['멀어요?','muhl-uh-yo']},
+{id:'map-please',cat:'directions',en:'Can I see a map?',
+ es:['¿Puedo ver un mapa?','PWEH-doh vehr oon MAH-pah'],fr:['Je peux voir un plan ?','zhuh puh vwahr ung PLAHN'],it:['Posso vedere una mappa?','POHS-soh veh-DEH-reh OO-nah MAHP-pah'],
+ de:['Kann ich eine Karte sehen?','kahn ikh AI-nuh KAHR-tuh ZAY-hen'],pt:['Posso ver um mapa?','POH-soo vehr oong MAH-pah'],nl:['Mag ik een kaart zien?','mahkh ik ayn kahrt zeen'],
+ ja:['地図を見せてもらえますか','chee-ZOO oh mee-seh-teh moh-rah-eh-mahs kah'],zh:['我可以看地图吗？','wuh kuh-yee kahn DEE-too mah'],
+ hi:['क्या मैं नक्शा देख सकता हूँ?','KYAH main NUK-shah dehkh SAK-tah hoon'],ar:['هل يمكنني رؤية خريطة؟','hahl yoom-KIH-noo-nee roo-YAH khah-REE-tah'],
+ th:['ขอดูแผนที่ได้ไหม','kor DOO pan-TEE dai mai'],ko:['지도를 볼 수 있어요?','jee-doh-rool bohl soo ee-suh-yo']},
+{id:'address-this',cat:'directions',en:'Take me to this address, please',
+ es:['Lléveme a esta dirección, por favor','YEH-veh-meh ah EHS-tah dee-rek-SYOHN por fah-VOR'],fr:['Emmenez-moi à cette adresse, s\u2019il vous plaît','ahn-muh-nay-mwah ah set ah-DRESS seel voo PLEH'],it:['Mi porti a questo indirizzo, per favore','mee POR-tee ah KWEH-stoh een-dee-REET-tsoh per fah-VOH-reh'],
+ de:['Bringen Sie mich bitte zu dieser Adresse','BRING-en zee mikh BIT-tuh tsoo DEE-zer ah-DRES-suh'],pt:['Leve-me a este endereço, por favor','LEH-vee-mee ah EESH-chee en-deh-RAY-soo poor fah-VOR'],nl:['Breng me naar dit adres, alstublieft','breng muh nahr dit ah-DRES AHLS-too-bleeft'],
+ ja:['この住所までお願いします','koh-noh JOO-shoh mah-deh oh-neh-GAI shee-mahs'],zh:['请带我去这个地址','cheeng dai wuh choo jir-guh DEE-jir'],
+ hi:['कृपया मुझे इस पते पर ले चलिए','KRIP-yah MOOJ-heh is PAH-tay par lay chah-LEE-ay'],ar:['خذني إلى هذا العنوان من فضلك','KHOODH-nee EE-lah HAH-dhah al-oon-WAHN min FAHD-lik'],
+ th:['พาฉันไปที่อยู่นี้หน่อย','pah CHAN pai tee YOO nee noi'],ko:['이 주소로 데려다 주세요','ee joo-soh-roh deh-ryuh-dah joo-say-yo']},
+{id:'lost',cat:'directions',en:'I\u2019m lost',
+ es:['Estoy perdido','ehs-TOY pair-DEE-doh'],fr:['Je suis perdu','zhuh swee pair-DOO'],it:['Mi sono perso','mee SOH-noh PAIR-soh'],
+ de:['Ich habe mich verirrt','ikh HAH-buh mikh fair-EERT'],pt:['Estou perdido','ehs-TOH pair-DEE-doo'],nl:['Ik ben verdwaald','ik ben vair-DWAHLT'],
+ ja:['道に迷いました','mee-chee nee mah-YOI-mahsh-tah'],zh:['我迷路了','wuh MEE-loo luh'],
+ hi:['मैं रास्ता भटक गया हूँ','main RAH-stah BHAH-tak gah-YAH hoon'],ar:['لقد ضللت الطريق','lah-QAHD dah-LAHL-too at-tah-REEQ'],
+ th:['ฉันหลงทาง','chan LONG-tahng'],ko:['길을 잃었어요','kee-rool ee-ruh-suh-yo']},
+{id:'stop-here',cat:'directions',en:'Stop here, please',
+ es:['Pare aquí, por favor','PAH-reh ah-KEE por fah-VOR'],fr:['Arrêtez-vous ici, s\u2019il vous plaît','ah-reh-tay-voo ee-SEE seel voo PLEH'],it:['Si fermi qui, per favore','see FAIR-mee kwee per fah-VOH-reh'],
+ de:['Halten Sie bitte hier','HAHL-ten zee BIT-tuh heer'],pt:['Pare aqui, por favor','PAH-ree ah-KEE poor fah-VOR'],nl:['Stop hier, alstublieft','stop heer AHLS-too-bleeft'],
+ ja:['ここで止めてください','koh-koh deh toh-meh-teh koo-dah-SAI'],zh:['请在这里停','cheeng zai jir-LEE teeng'],
+ hi:['कृपया यहाँ रुकिए','KRIP-yah yah-HAHN roo-KEE-ay'],ar:['توقف هنا من فضلك','tah-WAQ-qahf HOO-nah min FAHD-lik'],
+ th:['หยุดตรงนี้หน่อย','YOOT trong NEE noi'],ko:['여기서 멈춰 주세요','yuh-ghee-suh muhm-chwuh joo-say-yo']},
+{id:'turn-around',cat:'directions',en:'Turn around / Go back',
+ es:['Dé la vuelta','deh lah VWEHL-tah'],fr:['Faites demi-tour','fet duh-mee-TOOR'],it:['Torni indietro','TOR-nee een-DYEH-troh'],
+ de:['Kehren Sie um','KAY-ren zee oom'],pt:['Volte','VOHL-chee'],nl:['Keer om','kayr om'],
+ ja:['引き返してください','hee-kee-kah-ESH-teh koo-dah-SAI'],zh:['请掉头','cheeng DYOW-toh'],
+ hi:['वापस मुड़िए','WAH-pas moo-REE-ay'],ar:['استدر','is-TAH-dir'],
+ th:['กลับหลังหัน','GLAHP lang hahn'],ko:['되돌아가 주세요','dweh-dohl-ah-gah joo-say-yo']},
+{id:'taxi-please',cat:'transport',en:'I need a taxi',
+ es:['Necesito un taxi','neh-seh-SEE-toh oon TAHK-see'],fr:['Il me faut un taxi','eel muh foh tung tahk-SEE'],it:['Mi serve un taxi','mee SAIR-veh oon TAHK-see'],
+ de:['Ich brauche ein Taxi','ikh BROW-khuh ain TAHK-see'],pt:['Preciso de um táxi','preh-SEE-zoo jee oong TAHK-see'],nl:['Ik heb een taxi nodig','ik heb ayn TAHK-see NOH-dikh'],
+ ja:['タクシーが必要です','TAHK-shee gah hee-TSOO-yoh des'],zh:['我需要一辆出租车','wuh shoo-YOW ee-lyahng choo-zoo-chuh'],
+ hi:['मुझे टैक्सी चाहिए','MOOJ-heh TAIK-see CHAH-hee-ay'],ar:['أحتاج إلى سيارة أجرة','AHT-tah-joo EE-lah sah-YAH-rah OOj-rah'],
+ th:['ฉันต้องการแท็กซี่','chan taung-GAHN TEK-see'],ko:['택시가 필요해요','tek-shee-gah peel-yoh-heh-yo']},
+{id:'how-much-fare',cat:'transport',en:'How much is the fare?',
+ es:['¿Cuánto cuesta el viaje?','KWAHN-toh KWEHS-tah el vee-AH-heh'],fr:['C\u2019est combien, la course ?','seh kohn-BYAING lah koors'],it:['Quanto costa la corsa?','KWAHN-toh KOHS-tah lah KOR-sah'],
+ de:['Was kostet die Fahrt?','vahs KOS-tet dee fahrt'],pt:['Quanto custa a corrida?','KWAHN-too KOOS-tah ah koh-REE-dah'],nl:['Wat kost de rit?','vaht kost duh rit'],
+ ja:['料金はいくらですか','ryoh-KEEN wah ee-koo-rah des-kah'],zh:['车费多少钱？','chuh-fay dwuh-SHOW chyEN'],
+ hi:['किराया कितना है?','kee-RAH-yah KIT-nah hai'],ar:['كم الأجرة؟','kahm al-OOJ-rah'],
+ th:['ค่าโดยสารเท่าไหร่','kah-doi-SAHN TOW-rai'],ko:['요금이 얼마예요?','yoh-geum-ee uhl-mah-yeh-yo']},
+{id:'one-ticket',cat:'transport',en:'One ticket, please',
+ es:['Un billete, por favor','oon bee-YEH-teh por fah-VOR'],fr:['Un billet, s\u2019il vous plaît','ung bee-YEH seel voo PLEH'],it:['Un biglietto, per favore','oon bee-LYEHT-toh per fah-VOH-reh'],
+ de:['Eine Fahrkarte, bitte','AI-nuh FAHR-kahr-tuh BIT-tuh'],pt:['Uma passagem, por favor','OO-mah pah-SAH-zhayng poor fah-VOR'],nl:['Eén kaartje, alstublieft','ayn KAHR-tyuh AHLS-too-bleeft'],
+ ja:['切符を一枚ください','keep-POO oh ee-chee-MAI koo-dah-SAI'],zh:['请给我一张票','cheeng gay wuh ee-jahng PYOW'],
+ hi:['एक टिकट दीजिए','ek TEE-kat DEE-jee-ay'],ar:['تذكرة واحدة من فضلك','tadh-KAH-rah WAH-hee-dah min FAHD-lik'],
+ th:['ขอตั๋วหนึ่งใบ','kor TOO-ah noonng BAI'],ko:['표 한 장 주세요','pyoh hahn jahng joo-say-yo']},
+{id:'round-trip',cat:'transport',en:'A round-trip ticket',
+ es:['Un billete de ida y vuelta','oon bee-YEH-teh deh EE-dah ee VWEHL-tah'],fr:['Un aller-retour','ung ah-lay-ruh-TOOR'],it:['Un biglietto di andata e ritorno','oon bee-LYEHT-toh dee ahn-DAH-tah eh ree-TOR-noh'],
+ de:['Eine Hin- und Rückfahrkarte','AI-nuh hin oont ROOK-fahr-kahr-tuh'],pt:['Uma passagem de ida e volta','OO-mah pah-SAH-zhayng jee EE-dah ee VOHL-tah'],nl:['Een retourtje','ayn ruh-TOOR-tyuh'],
+ ja:['往復切符','OH-foo-koo keep-POO'],zh:['一张往返票','ee-jahng WAHNG-fahn pyow'],
+ hi:['आने-जाने का टिकट','AH-nay-JAH-nay kah TEE-kat'],ar:['تذكرة ذهاب وعودة','tadh-KAH-rah dhah-HAHB wah OW-dah'],
+ th:['ตั๋วไปกลับ','TOO-ah pai GLAHP'],ko:['왕복 표','wahng-bok pyoh']},
+{id:'when-does-leave',cat:'transport',en:'When does it leave?',
+ es:['¿A qué hora sale?','ah keh OH-rah SAH-leh'],fr:['À quelle heure part-il ?','ah kel eur par-TEEL'],it:['A che ora parte?','ah keh OH-rah PAHR-teh'],
+ de:['Wann fährt es ab?','vahn fairt es ahb'],pt:['A que horas sai?','ah kee OH-rahs SAI'],nl:['Hoe laat vertrekt het?','hoo laht fair-TREKT het'],
+ ja:['何時に出発しますか','NAHN-jee nee shoop-PAH-tsu shee-mahs kah'],zh:['几点出发？','jee-DYEN choo-fah'],
+ hi:['यह कितने बजे निकलेगी?','yeh KIT-nay BUH-jay NIK-lay-gee'],ar:['متى يغادر؟','mah-TAH yoo-GHAH-dir'],
+ th:['ออกกี่โมง','awk GEE-mohng'],ko:['몇 시에 출발해요?','myuht shee-eh chool-bahl-heh-yo']},
+{id:'is-this-seat-free',cat:'transport',en:'Is this seat free?',
+ es:['¿Está libre este asiento?','ehs-TAH LEE-breh EHS-teh ah-SYEN-toh'],fr:['Cette place est libre ?','set plahs eh LEE-br'],it:['Questo posto è libero?','KWEH-stoh POHS-toh eh LEE-beh-roh'],
+ de:['Ist dieser Platz frei?','ist DEE-zer plahts frai'],pt:['Este lugar está livre?','EESH-chee loo-GAHR ehs-TAH LEE-vree'],nl:['Is deze plek vrij?','is DAY-zuh plek frai'],
+ ja:['この席は空いていますか','koh-noh SEH-kee wah ai-teh-ee-mahs kah'],zh:['这个座位空吗？','jir-guh zwoh-way kong mah'],
+ hi:['क्या यह सीट खाली है?','KYAH yeh SEET KHAH-lee hai'],ar:['هل هذا المقعد فارغ؟','hahl HAH-dhah al-maq-AHD FAH-ree-gh'],
+ th:['ที่นั่งนี้ว่างไหม','TEE-nahng nee WAHNG mai'],ko:['이 자리 비었어요?','ee jah-ree bee-uh-suh-yo']},
+{id:'bus-stop',cat:'transport',en:'Where is the bus stop?',
+ es:['¿Dónde está la parada de autobús?','DOHN-deh ehs-TAH lah pah-RAH-dah deh ow-toh-BOOS'],fr:['Où est l\u2019arrêt de bus ?','oo EH lah-reh duh boos'],it:['Dov\u2019è la fermata dell\u2019autobus?','doh-VEH lah fair-MAH-tah del-OW-toh-boos'],
+ de:['Wo ist die Bushaltestelle?','voh ist dee BOOS-hahl-tuh-shtel-luh'],pt:['Onde fica o ponto de ônibus?','OHN-jee FEE-kah oo POHN-too jee OH-nee-boos'],nl:['Waar is de bushalte?','vahr is duh BOOS-hahl-tuh'],
+ ja:['バス停はどこですか','bah-soo-TAY wah DOH-koh des-kah'],zh:['公交车站在哪里？','gong-jyow-chuh-jahn zai nah-LEE'],
+ hi:['बस स्टॉप कहाँ है?','bus stop kah-HAHN hai'],ar:['أين موقف الحافلات؟','AY-nah MAW-qee-foo al-hah-fee-LAHT'],
+ th:['ป้ายรถเมล์อยู่ที่ไหน','PAI-rot-MAY yoo TEE nai'],ko:['버스 정류장은 어디예요?','buh-soo jung-ryoo-jahng-oon uh-dee-yeh-yo']},
+{id:'which-platform',cat:'transport',en:'Which platform?',
+ es:['¿Qué andén?','keh ahn-DEN'],fr:['Quel quai ?','kel KEH'],it:['Quale binario?','KWAH-leh bee-NAH-ryoh'],
+ de:['Welches Gleis?','VEL-khes glais'],pt:['Qual plataforma?','kwahl plah-tah-FOR-mah'],nl:['Welk perron?','velk peh-RON'],
+ ja:['何番線ですか','NAHN-bahn-sen des-kah'],zh:['哪个站台？','nah-guh JAHN-tai'],
+ hi:['कौन-सा प्लेटफ़ॉर्म?','kown-sah PLATE-form'],ar:['أي رصيف؟','ai-YYOO rah-SEEF'],
+ th:['ชานชาลาไหน','chahn-chah-LAH nai'],ko:['몇 번 플랫폼이에요?','myuht bun peul-let-poh-mee-eh-yo']},
+{id:'delayed',cat:'transport',en:'Is the flight/train delayed?',
+ es:['¿El vuelo/tren lleva retraso?','el VWEH-loh/tren YEH-vah reh-TRAH-soh'],fr:['Le vol/train est-il en retard ?','luh vol/trahn eh-teel ahn ruh-TAHR'],it:['Il volo/treno è in ritardo?','eel VOH-loh/TREH-noh eh een ree-TAHR-doh'],
+ de:['Hat der Flug/Zug Verspätung?','haht dair floog/tsook fair-SHPAY-toong'],pt:['O voo/trem está atrasado?','oo VOH-oo/trayng ehs-TAH ah-trah-ZAH-doo'],nl:['Heeft de vlucht/trein vertraging?','hayft duh flukht/train fair-TRAH-khing'],
+ ja:['飛行機・電車は遅れていますか','hee-KOH-kee den-shah wah oh-koh-reh-teh-ee-mahs kah'],zh:['航班/火车晚点吗？','hahng-bahn/hwoh-chuh wahn-DYEN mah'],
+ hi:['क्या उड़ान/ट्रेन देर से है?','KYAH oo-RAHN/train dare say hai'],ar:['هل الرحلة/القطار متأخر؟','hahl ar-REEH-lah/al-qee-TAHR moo-tah-AKH-khir'],
+ th:['เที่ยวบิน/รถไฟล่าช้าไหม','TIAO-been/rot-FAI LAH-chah mai'],ko:['비행기/기차가 지연됐어요?','bee-heng-gee/gee-chah-gah jee-yun-dwet-suh-yo']},
+{id:'car-rental',cat:'transport',en:'I want to rent a car',
+ es:['Quiero alquilar un coche','KYEH-roh ahl-kee-LAHR oon KOH-cheh'],fr:['Je voudrais louer une voiture','zhuh voo-DREH loo-ay oon vwa-TOOR'],it:['Vorrei noleggiare un\u2019auto','vor-RAY noh-lehj-JAH-reh oon-OW-toh'],
+ de:['Ich möchte ein Auto mieten','ikh MURKH-tuh ain OW-toh MEE-ten'],pt:['Quero alugar um carro','KEH-roo ah-loo-GAHR oong KAH-hoo'],nl:['Ik wil een auto huren','ik vil ayn OW-toh HOO-run'],
+ ja:['車を借りたいです','koo-roo-MAH oh kah-ree-TAI des'],zh:['我想租一辆车','wuh shyahng zoo ee-lyahng chuh'],
+ hi:['मैं कार किराए पर लेना चाहता हूँ','main KAHR kee-RAH-ay par LAY-nah CHAH-tah hoon'],ar:['أريد استئجار سيارة','oo-REED is-tee-JAHR sah-YAH-rah'],
+ th:['ฉันอยากเช่ารถ','chan YAHK chow ROT'],ko:['차를 빌리고 싶어요','chah-rool beel-lee-goh shee-puh-yo']},
+{id:'reservation',cat:'hotel',en:'I have a reservation',
+ es:['Tengo una reserva','TEN-goh OO-nah reh-SAIR-vah'],fr:['J\u2019ai une réservation','zhay oon ray-zer-vah-SYOHN'],it:['Ho una prenotazione','oh OO-nah preh-noh-tah-TSYOH-neh'],
+ de:['Ich habe eine Reservierung','ikh HAH-buh AI-nuh reh-zair-VEE-roong'],pt:['Tenho uma reserva','TEN-yoo OO-mah reh-ZEHR-vah'],nl:['Ik heb een reservering','ik heb ayn ray-zair-VAY-ring'],
+ ja:['予約があります','yoh-YAH-koo gah ah-ree-mahs'],zh:['我有预订','wuh yoh yoo-DEENG'],
+ hi:['मेरी बुकिंग है','MEH-ree BOO-king hai'],ar:['لدي حجز','lah-DAI-yah HAH-jiz'],
+ th:['ฉันจองไว้แล้ว','chan JONG wai leo'],ko:['예약했어요','yeh-yah-keh-suh-yo']},
+{id:'room-key',cat:'hotel',en:'The room key, please',
+ es:['La llave de la habitación, por favor','lah YAH-veh deh lah ah-bee-tah-SYOHN por fah-VOR'],fr:['La clé de la chambre, s\u2019il vous plaît','lah KLAY duh lah shahng-br seel voo PLEH'],it:['La chiave della camera, per favore','lah KYAH-veh DEL-lah KAH-meh-rah per fah-VOH-reh'],
+ de:['Den Zimmerschlüssel, bitte','dayn TSIM-mer-shloos-sel BIT-tuh'],pt:['A chave do quarto, por favor','ah SHAH-vee doo KWAHR-too poor fah-VOR'],nl:['De kamersleutel, alstublieft','duh KAH-mer-sluh-tul AHLS-too-bleeft'],
+ ja:['部屋の鍵をください','heh-YAH noh kah-GHEE oh koo-dah-SAI'],zh:['请给我房卡','cheeng gay wuh FAHNG-kah'],
+ hi:['कमरे की चाबी दीजिए','KUM-ray kee CHAH-bee DEE-jee-ay'],ar:['مفتاح الغرفة من فضلك','meef-TAH-hoo al-GHOOR-fah min FAHD-lik'],
+ th:['ขอกุญแจห้องหน่อย','kor goon-JEH hong NOI'],ko:['방 열쇠 주세요','bahng yul-sweh joo-say-yo']},
+{id:'check-in',cat:'hotel',en:'I want to check in',
+ es:['Quiero registrarme','KYEH-roh reh-khees-TRAHR-meh'],fr:['Je veux faire le check-in','zhuh vuh fair luh chek-EEN'],it:['Vorrei fare il check-in','vor-RAY FAH-reh eel chek-EEN'],
+ de:['Ich möchte einchecken','ikh MURKH-tuh AIN-chek-ken'],pt:['Quero fazer o check-in','KEH-roo fah-ZEHR oo chek-EEN'],nl:['Ik wil inchecken','ik vil IN-chek-ken'],
+ ja:['チェックインしたいです','chek-KOO een shee-TAI des'],zh:['我想办理入住','wuh shyahng bahn-LEE roo-joo'],
+ hi:['मैं चेक-इन करना चाहता हूँ','main CHECK-in KAR-nah CHAH-tah hoon'],ar:['أريد تسجيل الوصول','oo-REED tas-JEE-loo al-woo-SOOL'],
+ th:['ฉันอยากเช็คอิน','chan YAHK chek-IN'],ko:['체크인하고 싶어요','cheh-kee-in-hah-goh shee-puh-yo']},
+{id:'checkout-time',cat:'hotel',en:'What time is check-out?',
+ es:['¿A qué hora es la salida?','ah keh OH-rah ehs lah sah-LEE-dah'],fr:['À quelle heure le check-out ?','ah kel eur luh chek-OWT'],it:['A che ora il check-out?','ah keh OH-rah eel chek-OWT'],
+ de:['Wann ist der Check-out?','vahn ist dair chek-OWT'],pt:['A que horas é o check-out?','ah kee OH-rahs eh oo chek-OWT'],nl:['Hoe laat is het uitchecken?','hoo laht is het OIT-chek-ken'],
+ ja:['チェックアウトは何時ですか','chek-KOO ow-toh wah NAHN-jee des-kah'],zh:['退房时间是几点？','tway-fahng shir-jee-ahn shir jee-DYEN'],
+ hi:['चेक-आउट कितने बजे है?','CHECK-out KIT-nay BUH-jay hai'],ar:['متى موعد تسجيل المغادرة؟','mah-TAH MAW-ee-doo tas-JEE-loo al-moo-GHAH-dah-rah'],
+ th:['เช็คเอาท์กี่โมง','chek-OWT GEE-mohng'],ko:['체크아웃은 몇 시예요?','cheh-kee-ah-oo-toon myuht shee-yeh-yo']},
+{id:'wifi-password',cat:'hotel',en:'What\u2019s the Wi-Fi password?',
+ es:['¿Cuál es la contraseña del wifi?','kwahl ehs lah kon-trah-SEH-nyah del wee-FEE'],fr:['C\u2019est quoi le mot de passe du wifi ?','seh kwah luh moh duh pahs doo wee-FEE'],it:['Qual è la password del wifi?','KWAHL eh lah PAHS-swoord del wee-FEE'],
+ de:['Wie lautet das WLAN-Passwort?','vee LOW-tet dahs veh-LAHN pahs-vort'],pt:['Qual é a senha do wifi?','kwahl eh ah SEHN-yah doo wee-FEE'],nl:['Wat is het wifi-wachtwoord?','vaht is het wee-FEE VAHKHT-vort'],
+ ja:['Wi-Fiのパスワードは何ですか','wee-FEE noh pah-soo-WAH-doh wah NAHN des-kah'],zh:['无线网络密码是什么？','woo-shee-ahn wahng-lwoh MEE-mah shir SHIR-muh'],
+ hi:['वाई-फ़ाई का पासवर्ड क्या है?','WAI-fai kah PAHS-word KYAH hai'],ar:['ما هي كلمة سر الواي فاي؟','mah HEE-yah kah-lee-mah-too SIR-ree al-wai-FAI'],
+ th:['รหัสไวไฟคืออะไร','rah-HAHT wai-FAI keu ah-RAI'],ko:['와이파이 비밀번호가 뭐예요?','wai-pai bee-meel-bun-hoh-gah mwoh-yeh-yo']},
+{id:'breakfast-included',cat:'hotel',en:'Is breakfast included?',
+ es:['¿El desayuno está incluido?','el deh-sah-YOO-noh ehs-TAH een-kloo-EE-doh'],fr:['Le petit-déjeuner est inclus ?','luh puh-tee day-zhuh-NAY eh tang-KLOO'],it:['La colazione è inclusa?','lah koh-lah-TSYOH-neh eh een-KLOO-zah'],
+ de:['Ist das Frühstück inbegriffen?','ist dahs FROO-shtook in-buh-GRIF-fen'],pt:['O café da manhã está incluído?','oo kah-FEH dah mahn-YAHN ehs-TAH een-kloo-EE-doo'],nl:['Is het ontbijt inbegrepen?','is het ont-BAIT in-buh-KHRAY-pun'],
+ ja:['朝食は含まれていますか','choh-SHOH-koo wah foo-koh-mah-reh-teh-ee-mahs kah'],zh:['包含早餐吗？','bow-HAHN zow-tsahn mah'],
+ hi:['क्या नाश्ता शामिल है?','KYAH NAHSH-tah SHAH-mil hai'],ar:['هل الإفطار مشمول؟','hahl al-if-TAHR mash-MOOL'],
+ th:['รวมอาหารเช้าไหม','roo-ahm ah-HAHN-chow mai'],ko:['아침 식사 포함돼요?','ah-cheem sheek-sah poh-hahm-dweh-yo']},
+{id:'single-room',cat:'hotel',en:'A single room, please',
+ es:['Una habitación individual, por favor','OO-nah ah-bee-tah-SYOHN een-dee-vee-DWAHL por fah-VOR'],fr:['Une chambre simple, s\u2019il vous plaît','oon shahng-br SANG-pl seel voo PLEH'],it:['Una camera singola, per favore','OO-nah KAH-meh-rah SEEN-goh-lah per fah-VOH-reh'],
+ de:['Ein Einzelzimmer, bitte','ain AIN-tsel-tsim-mer BIT-tuh'],pt:['Um quarto de solteiro, por favor','oong KWAHR-too jee sohl-TAY-roo poor fah-VOR'],nl:['Een eenpersoonskamer, alstublieft','ayn AYN-pair-sohns-kah-mer AHLS-too-bleeft'],
+ ja:['シングルルームをお願いします','SHEEN-goo-roo ROO-moo oh oh-neh-GAI shee-mahs'],zh:['请给我一个单人间','cheeng gay wuh ee-guh DAHN-ren-jee-ahn'],
+ hi:['एक सिंगल रूम दीजिए','ek SINGLE room DEE-jee-ay'],ar:['غرفة مفردة من فضلك','GHOOR-fah MOOF-rah-dah min FAHD-lik'],
+ th:['ขอห้องเดี่ยว','kor HONG diao'],ko:['싱글룸 하나 주세요','sheeng-geul-loom hah-nah joo-say-yo']},
+{id:'double-room',cat:'hotel',en:'A double room, please',
+ es:['Una habitación doble, por favor','OO-nah ah-bee-tah-SYOHN DOH-bleh por fah-VOR'],fr:['Une chambre double, s\u2019il vous plaît','oon shahng-br DOO-bl seel voo PLEH'],it:['Una camera doppia, per favore','OO-nah KAH-meh-rah DOHP-pyah per fah-VOH-reh'],
+ de:['Ein Doppelzimmer, bitte','ain DOP-pel-tsim-mer BIT-tuh'],pt:['Um quarto de casal, por favor','oong KWAHR-too jee kah-ZAHL poor fah-VOR'],nl:['Een tweepersoonskamer, alstublieft','ayn TWAY-pair-sohns-kah-mer AHLS-too-bleeft'],
+ ja:['ダブルルームをお願いします','DAH-boo-roo ROO-moo oh oh-neh-GAI shee-mahs'],zh:['请给我一个双人间','cheeng gay wuh ee-guh shwahng-REN-jee-ahn'],
+ hi:['एक डबल रूम दीजिए','ek DOUBLE room DEE-jee-ay'],ar:['غرفة مزدوجة من فضلك','GHOOR-fah mooz-DAH-wah-jah min FAHD-lik'],
+ th:['ขอห้องคู่','kor HONG koo'],ko:['더블룸 하나 주세요','duh-beul-loom hah-nah joo-say-yo']},
+{id:'hot-water',cat:'hotel',en:'There\u2019s no hot water',
+ es:['No hay agua caliente','noh ai AH-gwah kah-LYEN-teh'],fr:['Il n\u2019y a pas d\u2019eau chaude','eel nyah pah DOH shohd'],it:['Non c\u2019è acqua calda','non cheh AHK-kwah KAHL-dah'],
+ de:['Es gibt kein warmes Wasser','es geebt kain VAR-mes VAHS-ser'],pt:['Não há água quente','nown AH ah-GWAH KEN-chee'],nl:['Er is geen warm water','air is khayn varm VAH-ter'],
+ ja:['お湯が出ません','oh-YOO gah deh-mah-SEN'],zh:['没有热水','MAY yoh ruh-SHWAY'],
+ hi:['गर्म पानी नहीं आ रहा','gahrm PAH-nee nah-HEEN ah RAH-hah'],ar:['لا يوجد ماء ساخن','lah YOO-jahd MAH-oon SAH-khin'],
+ th:['ไม่มีน้ำร้อน','mai MEE nahm-RAUN'],ko:['뜨거운 물이 안 나와요','ttoo-guh-oon moo-ree ahn nah-wah-yo']},
+{id:'how-much-per-night',cat:'hotel',en:'How much per night?',
+ es:['¿Cuánto cuesta por noche?','KWAHN-toh KWEHS-tah por NOH-cheh'],fr:['C\u2019est combien par nuit ?','seh kohn-BYAING par NWEE'],it:['Quanto costa a notte?','KWAHN-toh KOHS-tah ah NOHT-teh'],
+ de:['Was kostet es pro Nacht?','vahs KOS-tet es proh nahkht'],pt:['Quanto custa por noite?','KWAHN-too KOOS-tah poor NOY-chee'],nl:['Wat kost het per nacht?','vaht kost het pair nahkht'],
+ ja:['一泊いくらですか','eep-PAH-koo ee-koo-rah des-kah'],zh:['每晚多少钱？','may-wahn dwuh-SHOW chyEN'],
+ hi:['एक रात का कितना है?','ek RAHT kah KIT-nah hai'],ar:['كم سعر الليلة؟','kahm SIH-roo al-LAY-lah'],
+ th:['คืนละเท่าไหร่','keun-LAH tow-rai'],ko:['하룻밤에 얼마예요?','hah-root-bahm-eh uhl-mah-yeh-yo']},
+{id:'menu',cat:'food',en:'The menu, please',
+ es:['La carta, por favor','lah KAHR-tah por fah-VOR'],fr:['La carte, s\u2019il vous plaît','lah kahrt seel voo PLEH'],it:['Il menù, per favore','eel meh-NOO per fah-VOH-reh'],
+ de:['Die Speisekarte, bitte','dee SHPAY-zuh-kahr-tuh BIT-tuh'],pt:['O cardápio, por favor','oo kahr-DAH-pyoo poor fah-VOR'],nl:['Het menu, alstublieft','het muh-NOO AHLS-too-bleeft'],
+ ja:['メニューをください','MEH-nyoo oh koo-dah-SAI'],zh:['请给我菜单','cheeng gay wuh TSAI-dahn'],
+ hi:['मेन्यू दीजिए','MAIN-yoo DEE-jee-ay'],ar:['القائمة من فضلك','al-qah-EE-mah min FAHD-lik'],
+ th:['ขอเมนูหน่อย','kor meh-NOO noi'],ko:['메뉴 주세요','meh-nyoo joo-say-yo']},
+{id:'table-for-two',cat:'food',en:'A table for two',
+ es:['Una mesa para dos','OO-nah MEH-sah PAH-rah dohs'],fr:['Une table pour deux','oon TAH-bl poor DUH'],it:['Un tavolo per due','oon TAH-voh-loh pair DOO-eh'],
+ de:['Einen Tisch für zwei','AI-nen tish foor tsvai'],pt:['Uma mesa para dois','OO-mah MEH-zah PAH-rah doysh'],nl:['Een tafel voor twee','ayn TAH-ful vohr tway'],
+ ja:['二人用のテーブル','foo-tah-REE-yoh noh TAY-boo-roo'],zh:['一张两人桌','ee-jahng LYAHNG-ren jwuh'],
+ hi:['दो लोगों के लिए टेबल','doh LOH-gon kay lee-ay TABLE'],ar:['طاولة لشخصين','TAH-wee-lah lee-shakh-SAYN'],
+ th:['โต๊ะสำหรับสองคน','TOH sahm-raup SONG-kon'],ko:['두 사람 자리요','doo sah-rahm jah-ree-yoh']},
+{id:'water',cat:'food',en:'Water, please',
+ es:['Agua, por favor','AH-gwah por fah-VOR'],fr:['De l\u2019eau, s\u2019il vous plaît','duh LOH seel voo PLEH'],it:['Acqua, per favore','AHK-kwah per fah-VOH-reh'],
+ de:['Wasser, bitte','VAHS-ser BIT-tuh'],pt:['Água, por favor','AH-gwah poor fah-VOR'],nl:['Water, alstublieft','VAH-ter AHLS-too-bleeft'],
+ ja:['水をください','mee-ZOO oh koo-dah-SAI'],zh:['请给我水','cheeng gay wuh shway'],
+ hi:['पानी दीजिए','PAH-nee DEE-jee-ay'],ar:['ماء من فضلك','MAH-oon min FAHD-lik'],
+ th:['ขอน้ำหน่อย','kor NAHM noi'],ko:['물 주세요','mool joo-say-yo']},
+{id:'bill-please',cat:'food',en:'The bill, please',
+ es:['La cuenta, por favor','lah KWEN-tah por fah-VOR'],fr:['L\u2019addition, s\u2019il vous plaît','lah-dee-SYOHN seel voo PLEH'],it:['Il conto, per favore','eel KON-toh per fah-VOH-reh'],
+ de:['Die Rechnung, bitte','dee REKH-noong BIT-tuh'],pt:['A conta, por favor','ah KOHN-tah poor fah-VOR'],nl:['De rekening, alstublieft','duh RAY-kuh-ning AHLS-too-bleeft'],
+ ja:['お会計をお願いします','oh-KAI-kay oh oh-neh-GAI shee-mahs'],zh:['请买单','cheeng MAI-dahn'],
+ hi:['बिल दीजिए','bil DEE-jee-ay'],ar:['الفاتورة من فضلك','al-fah-TOO-rah min FAHD-lik'],
+ th:['ขอบิลหน่อย','kor BIN noi'],ko:['계산서 주세요','gyeh-sahn-suh joo-say-yo']},
+{id:'delicious',cat:'food',en:'It\u2019s delicious',
+ es:['Está delicioso','ehs-TAH deh-lee-SYOH-soh'],fr:['C\u2019est délicieux','seh day-lee-SYUH'],it:['È delizioso','eh deh-lee-TSYOH-zoh'],
+ de:['Es ist köstlich','es ist KURST-likh'],pt:['Está delicioso','ehs-TAH dee-lee-SYOH-zoo'],nl:['Het is heerlijk','het is HAYR-lik'],
+ ja:['とても美味しいです','toh-TEH-moh oh-EE-shee des'],zh:['很好吃','hun HOW-chir'],
+ hi:['बहुत स्वादिष्ट है','bah-HOOT swah-DISHT hai'],ar:['إنه لذيذ','IN-nah-hoo lah-DHEEDH'],
+ th:['อร่อยมาก','ah-ROI mahk'],ko:['정말 맛있어요','jung-mahl mah-shee-suh-yo']},
+{id:'not-spicy',cat:'food',en:'Not spicy, please',
+ es:['Sin picante, por favor','seen pee-KAHN-teh por fah-VOR'],fr:['Pas épicé, s\u2019il vous plaît','pah zay-pee-SAY seel voo PLEH'],it:['Non piccante, per favore','non peek-KAHN-teh per fah-VOH-reh'],
+ de:['Nicht scharf, bitte','nikht sharf BIT-tuh'],pt:['Sem pimenta, por favor','sayng pee-MEN-tah poor fah-VOR'],nl:['Niet pittig, alstublieft','neet PIT-tikh AHLS-too-bleeft'],
+ ja:['辛くしないでください','kah-rah-KOO shee-nai deh koo-dah-SAI'],zh:['请不要辣','cheeng boo-YOW lah'],
+ hi:['तीखा मत बनाइए','TEE-khah maht bah-NAH-ee-ay'],ar:['بدون بهارات حارة من فضلك','bih-DOO-nah bah-hah-RAHT HAH-rah min FAHD-lik'],
+ th:['ไม่เผ็ดนะ','mai PHET nah'],ko:['맵지 않게 해 주세요','mep-jee ahn-keh heh joo-say-yo']},
+{id:'vegetarian',cat:'food',en:'I\u2019m vegetarian',
+ es:['Soy vegetariano','soy veh-kheh-tah-RYAH-noh'],fr:['Je suis végétarien','zhuh swee vay-zhay-tah-RYAING'],it:['Sono vegetariano','SOH-noh veh-jeh-tah-RYAH-noh'],
+ de:['Ich bin Vegetarier','ikh bin veh-geh-TAH-ryer'],pt:['Sou vegetariano','soh veh-zheh-tah-RYAH-noo'],nl:['Ik ben vegetariër','ik ben veh-kheh-TAH-ryer'],
+ ja:['私はベジタリアンです','wah-tah-shee wah beh-jee-TAH-ree-ahn des'],zh:['我是素食者','wuh shir soo-SHIR-juh'],
+ hi:['मैं शाकाहारी हूँ','main shah-kah-HAH-ree hoon'],ar:['أنا نباتي','AH-nah nah-BAH-tee'],
+ th:['ฉันกินมังสวิรัติ','chan geen mahng-sah-wih-RAHT'],ko:['저는 채식주의자예요','juh-noon cheh-sheek-joo-wee-jah-yeh-yo']},
+{id:'allergy',cat:'food',en:'I have an allergy to\u2026',
+ es:['Soy alérgico a\u2026','soy ah-LEHR-khee-koh ah'],fr:['Je suis allergique à\u2026','zhuh swee zah-lair-ZHEEK ah'],it:['Sono allergico a\u2026','SOH-noh ahl-LEHR-jee-koh ah'],
+ de:['Ich bin allergisch gegen\u2026','ikh bin ahl-AIR-gish GAY-gen'],pt:['Tenho alergia a\u2026','TEN-yoo ah-lair-ZHEE-ah ah'],nl:['Ik ben allergisch voor\u2026','ik ben ahl-AIR-khees vohr'],
+ ja:['\u2026のアレルギーがあります','noh ah-reh-ROO-ghee gah ah-ree-mahs'],zh:['我对\u2026过敏','wuh dway GWOH-min'],
+ hi:['मुझे\u2026 से एलर्जी है','MOOJ-heh say AY-lur-jee hai'],ar:['لدي حساسية من\u2026','lah-DAI-yah hah-sah-SEE-yah min'],
+ th:['ฉันแพ้\u2026','chan PEH'],ko:['\u2026알레르기가 있어요','ahl-leh-roo-gee-gah ee-suh-yo']},
+{id:'coffee',cat:'food',en:'A coffee, please',
+ es:['Un café, por favor','oon kah-FEH por fah-VOR'],fr:['Un café, s\u2019il vous plaît','ung kah-FAY seel voo PLEH'],it:['Un caffè, per favore','oon kahf-FEH per fah-VOH-reh'],
+ de:['Einen Kaffee, bitte','AI-nen KAH-fay BIT-tuh'],pt:['Um café, por favor','oong kah-FEH poor fah-VOR'],nl:['Een koffie, alstublieft','ayn KOF-fee AHLS-too-bleeft'],
+ ja:['コーヒーをください','koh-HEE oh koo-dah-SAI'],zh:['请给我一杯咖啡','cheeng gay wuh ee-bay kah-FAY'],
+ hi:['एक कॉफ़ी दीजिए','ek COFF-ee DEE-jee-ay'],ar:['قهوة من فضلك','QAH-wah min FAHD-lik'],
+ th:['ขอกาแฟหน่อย','kor gah-FEH noi'],ko:['커피 주세요','kuh-pee joo-say-yo']},
+{id:'breakfast-food',cat:'food',en:'Where can I have breakfast?',
+ es:['¿Dónde puedo desayunar?','DOHN-deh PWEH-doh deh-sah-yoo-NAHR'],fr:['Où puis-je prendre le petit-déjeuner ?','oo pwee-zh prahng-dr luh puh-tee day-zhuh-NAY'],it:['Dove posso fare colazione?','DOH-veh POHS-soh FAH-reh koh-lah-TSYOH-neh'],
+ de:['Wo kann ich frühstücken?','voh kahn ikh FROO-shtook-ken'],pt:['Onde posso tomar café da manhã?','OHN-jee POH-soo too-MAHR kah-FEH dah mahn-YAHN'],nl:['Waar kan ik ontbijten?','vahr kahn ik ont-BAI-ten'],
+ ja:['朝食はどこで食べられますか','choh-SHOH-koo wah DOH-koh deh tah-beh-rah-reh-mahs kah'],zh:['在哪里可以吃早餐？','zai nah-LEE kuh-yee chir zow-TSAHN'],
+ hi:['नाश्ता कहाँ कर सकता हूँ?','NAHSH-tah kah-HAHN kar SAK-tah hoon'],ar:['أين يمكنني تناول الإفطار؟','AY-nah yoom-KIH-noo-nee tah-NAH-woo-loo al-if-TAHR'],
+ th:['กินอาหารเช้าที่ไหนได้','geen ah-HAHN-chow TEE-nai dai'],ko:['아침은 어디서 먹어요?','ah-cheem-oon uh-dee-suh muh-guh-yo']},
+{id:'no-meat',cat:'food',en:'No meat',
+ es:['Sin carne','seen KAHR-neh'],fr:['Sans viande','sahn vyahnd'],it:['Senza carne','SEN-tsah KAHR-neh'],
+ de:['Ohne Fleisch','OH-nuh flaish'],pt:['Sem carne','sayng KAHR-nee'],nl:['Zonder vlees','ZON-der flays'],
+ ja:['肉なし','nee-KOO nah-shee'],zh:['不要肉','boo-YOW roh'],
+ hi:['मांस नहीं','MAHNS nah-HEEN'],ar:['بدون لحم','bih-DOO-nah LAH-him'],
+ th:['ไม่เอาเนื้อ','mai ow NUE-a'],ko:['고기 없이','goh-gee uhb-shee']},
+{id:'cheers',cat:'food',en:'Cheers!',
+ es:['¡Salud!','sah-LOOD'],fr:['Santé !','sahn-TAY'],it:['Cin cin!','cheen cheen'],
+ de:['Prost!','prohst'],pt:['Saúde!','sah-OO-jee'],nl:['Proost!','prohst'],
+ ja:['乾杯','kahn-PAI'],zh:['干杯','gahn bay'],
+ hi:['चियर्स','cheers'],ar:['في صحتك','fee SAHH-tik'],
+ th:['ชนแก้ว','chon-GEOW'],ko:['건배','gun-beh']},
+{id:'how-much',cat:'shopping',en:'How much does this cost?',
+ es:['¿Cuánto cuesta esto?','KWAHN-toh KWEHS-tah EHS-toh'],fr:['Combien ça coûte ?','kohn-BYAING sah koot'],it:['Quanto costa?','KWAHN-toh KOHS-tah'],
+ de:['Was kostet das?','vahs KOS-tet dahs'],pt:['Quanto custa isto?','KWAHN-too KOOS-tah EESH-too'],nl:['Wat kost dit?','vaht kost dit'],
+ ja:['これはいくらですか','koh-reh wah ee-koo-rah des-kah'],zh:['这个多少钱？','jir-guh dwuh-SHOW chyEN'],
+ hi:['यह कितने का है?','yeh KIT-nay kah hai'],ar:['كم سعر هذا؟','kahm SIH-roo HAH-dhah'],
+ th:['อันนี้เท่าไหร่','ahn-NEE tow-rai'],ko:['이거 얼마예요?','ee-guh uhl-mah-yeh-yo']},
+{id:'too-expensive',cat:'shopping',en:'That\u2019s too expensive',
+ es:['Es demasiado caro','ehs deh-mah-SYAH-doh KAH-roh'],fr:['C\u2019est trop cher','seh troh SHAIR'],it:['È troppo caro','eh TROHP-poh KAH-roh'],
+ de:['Das ist zu teuer','dahs ist tsoo TOY-er'],pt:['Está muito caro','ehs-TAH MOY-too KAH-roo'],nl:['Dat is te duur','daht is tuh DOOR'],
+ ja:['高すぎます','tah-kah-soo-ghee-MAHS'],zh:['太贵了','tai GWAY luh'],
+ hi:['बहुत महँगा है','bah-HOOT MEHNG-gah hai'],ar:['هذا غالٍ جداً','HAH-dhah GHAH-leen JEED-dahn'],
+ th:['แพงเกินไป','peng gun-PAI'],ko:['너무 비싸요','nuh-moo bee-ssah-yo']},
+{id:'discount',cat:'shopping',en:'Can you give a discount?',
+ es:['¿Me hace un descuento?','meh AH-seh oon dehs-KWEN-toh'],fr:['Vous faites une remise ?','voo fet oon ruh-MEEZ'],it:['Mi fa uno sconto?','mee fah OO-noh SKON-toh'],
+ de:['Geben Sie mir einen Rabatt?','GAY-ben zee meer AI-nen rah-BAHT'],pt:['Você faz um desconto?','voh-SEH fahz oong desh-KOHN-too'],nl:['Geeft u korting?','khayft oo KOR-ting'],
+ ja:['値引きしてもらえますか','neh-BEE-kee shee-teh moh-rah-eh-mahs kah'],zh:['可以打折吗？','kuh-yee DAH-juh mah'],
+ hi:['क्या छूट मिलेगी?','KYAH CHHOOT mee-LAY-gee'],ar:['هل يمكنك تخفيض السعر؟','hahl yoom-KIH-noo-kah takh-FEE-doh as-SIHR'],
+ th:['ลดราคาได้ไหม','LOT rah-kah dai mai'],ko:['할인해 주실 수 있어요?','hahl-een-heh joo-sheel soo ee-suh-yo']},
+{id:'just-looking',cat:'shopping',en:'I\u2019m just looking',
+ es:['Solo estoy mirando','SOH-loh ehs-TOY mee-RAHN-doh'],fr:['Je regarde seulement','zhuh ruh-GAHRD suhl-MAHN'],it:['Sto solo guardando','stoh SOH-loh gwahr-DAHN-doh'],
+ de:['Ich schaue nur','ikh SHOW-uh noor'],pt:['Estou só olhando','ehs-TOH soh oh-LYAHN-doo'],nl:['Ik kijk alleen maar','ik kaik ahl-LAYN mahr'],
+ ja:['見ているだけです','MEE-teh-ee-roo dah-keh des'],zh:['我只是看看','wuh jir-shir KAHN-kahn'],
+ hi:['मैं बस देख रहा हूँ','main bus dehkh RAH-hah hoon'],ar:['أنا أتفرج فقط','AH-nah at-FAR-raj FAH-qat'],
+ th:['ดูเฉยๆ','doo CHOEI-choei'],ko:['구경만 하고 있어요','goo-gyung-mahn hah-goh ee-suh-yo']},
+{id:'card-ok',cat:'shopping',en:'Do you accept credit cards?',
+ es:['¿Aceptan tarjetas de crédito?','ah-SEP-tahn tahr-KHEH-tahs deh KREH-dee-toh'],fr:['Vous acceptez les cartes de crédit ?','voo zahk-sep-TAY lay kahrt duh kray-DEE'],it:['Accettate carte di credito?','ahch-chet-TAH-teh KAHR-teh dee KREH-dee-toh'],
+ de:['Akzeptieren Sie Kreditkarten?','ahk-tsep-TEE-ren zee kreh-DEET-kahr-ten'],pt:['Vocês aceitam cartão de crédito?','voh-SEHS ah-SAY-towng kahr-TOWNG jee kreh-DEE-too'],nl:['Accepteert u creditcards?','ahk-sep-TAYRT oo KREH-deet-kahrts'],
+ ja:['クレジットカードは使えますか','koo-reh-JEET-toh KAH-doh wah tsoo-kah-eh-mahs kah'],zh:['可以刷卡吗？','kuh-yee shwah-KAH mah'],
+ hi:['क्या क्रेडिट कार्ड चलेगा?','KYAH CREDIT card chah-LAY-gah'],ar:['هل تقبلون بطاقات الائتمان؟','hahl taq-BAH-loo-nah bih-tah-QAHT al-ee-tee-MAHN'],
+ th:['รับบัตรเครดิตไหม','RAHP baht-kreh-DIT mai'],ko:['신용카드 돼요?','sheen-yong-kah-doo dweh-yo']},
+{id:'receipt',cat:'shopping',en:'A receipt, please',
+ es:['El recibo, por favor','el reh-SEE-boh por fah-VOR'],fr:['Le ticket de caisse, s\u2019il vous plaît','luh tee-KEH duh kess seel voo PLEH'],it:['Lo scontrino, per favore','loh skon-TREE-noh per fah-VOH-reh'],
+ de:['Die Quittung, bitte','dee KVIT-toong BIT-tuh'],pt:['O recibo, por favor','oo reh-SEE-boo poor fah-VOR'],nl:['De bon, alstublieft','duh bon AHLS-too-bleeft'],
+ ja:['レシートをください','reh-SHEE-toh oh koo-dah-SAI'],zh:['请给我发票','cheeng gay wuh fah-PYOW'],
+ hi:['रसीद दीजिए','rah-SEED DEE-jee-ay'],ar:['الإيصال من فضلك','al-ee-SAHL min FAHD-lik'],
+ th:['ขอใบเสร็จหน่อย','kor bai-SET noi'],ko:['영수증 주세요','yung-soo-joong joo-say-yo']},
+{id:'open-hours',cat:'shopping',en:'When do you open / close?',
+ es:['¿A qué hora abren/cierran?','ah keh OH-rah AH-bren/SYEH-rahn'],fr:['Vous ouvrez/fermez à quelle heure ?','voo zoo-VRAY/fair-MAY ah kel eur'],it:['A che ora aprite/chiudete?','ah keh OH-rah ah-PREE-teh/kyoo-DEH-teh'],
+ de:['Wann öffnen/schließen Sie?','vahn URF-nen/SHLEE-sen zee'],pt:['A que horas abrem/fecham?','ah kee OH-rahs AH-brang/FEH-showng'],nl:['Hoe laat bent u open/gesloten?','hoo laht bent oo OH-pun/khuh-SLOH-tun'],
+ ja:['何時に開きます・閉まりますか','NAHN-jee nee ah-kee-mahs shee-mah-ree-mahs kah'],zh:['几点开门/关门？','jee-DYEN kai-mun/gwahn-mun'],
+ hi:['कितने बजे खुलता/बंद होता है?','KIT-nay BUH-jay KHOOL-tah/bund HOH-tah hai'],ar:['متى تفتحون/تغلقون؟','mah-TAH taf-tah-HOO-nah/toogh-lee-QOO-nah'],
+ th:['เปิด/ปิดกี่โมง','purt/pit GEE-mohng'],ko:['몇 시에 열고 닫아요?','myuht shee-eh yul-goh dah-dah-yo']},
+{id:'where-market',cat:'shopping',en:'Where is the market?',
+ es:['¿Dónde está el mercado?','DOHN-deh ehs-TAH el mair-KAH-doh'],fr:['Où est le marché ?','oo EH luh mar-SHAY'],it:['Dov\u2019è il mercato?','doh-VEH eel mair-KAH-toh'],
+ de:['Wo ist der Markt?','voh ist dair mahrkt'],pt:['Onde fica o mercado?','OHN-jee FEE-kah oo mair-KAH-doo'],nl:['Waar is de markt?','vahr is duh mahrkt'],
+ ja:['市場はどこですか','ee-chee-BAH wah DOH-koh des-kah'],zh:['市场在哪里？','shir-CHAHNG zai nah-LEE'],
+ hi:['बाज़ार कहाँ है?','bah-ZAHR kah-HAHN hai'],ar:['أين السوق؟','AY-nah as-SOOQ'],
+ th:['ตลาดอยู่ที่ไหน','tah-LAHT yoo TEE nai'],ko:['시장은 어디예요?','shee-jahng-oon uh-dee-yeh-yo']},
+{id:'help',cat:'emergencies',en:'Help!',
+ es:['¡Ayuda!','ah-YOO-dah'],fr:['Au secours !','oh suh-KOOR'],it:['Aiuto!','ah-YOO-toh'],
+ de:['Hilfe!','HIL-fuh'],pt:['Socorro!','soo-KOH-hoo'],nl:['Help!','help'],
+ ja:['助けて！','tah-soo-KEH-teh'],zh:['救命！','jyoh-MEENG'],
+ hi:['बचाओ!','bah-CHAH-oh'],ar:['النجدة!','an-NAJ-dah'],
+ th:['ช่วยด้วย!','CHUAI duai'],ko:['도와주세요!','doh-wah-joo-say-yo']},
+{id:'call-police',cat:'emergencies',en:'Call the police!',
+ es:['¡Llame a la policía!','YAH-meh ah lah poh-lee-SEE-ah'],fr:['Appelez la police !','ahp-lay lah poh-LEES'],it:['Chiami la polizia!','KYAH-mee lah poh-lee-TSYAH'],
+ de:['Rufen Sie die Polizei!','ROO-fen zee dee poh-lee-TSAI'],pt:['Chame a polícia!','SHAH-mee ah poh-LEE-syah'],nl:['Bel de politie!','bel duh poh-leet-SEE'],
+ ja:['警察を呼んでください','kay-SAH-tsu oh yohn-deh koo-dah-SAI'],zh:['请报警！','cheeng BOW-jeeng'],
+ hi:['पुलिस को बुलाइए!','poo-LIS koh boo-LAH-ee-ay'],ar:['اتصل بالشرطة!','it-TAH-sil bish-SHOOR-tah'],
+ th:['เรียกตำรวจ!','RIAK tam-ROO-at'],ko:['경찰을 불러 주세요!','gyung-chah-rool bool-luh joo-say-yo']},
+{id:'call-ambulance',cat:'emergencies',en:'Call an ambulance!',
+ es:['¡Llame una ambulancia!','YAH-meh OO-nah ahm-boo-LAHN-syah'],fr:['Appelez une ambulance !','ahp-lay oon ahn-boo-LAHNSS'],it:['Chiami un\u2019ambulanza!','KYAH-mee oon-ahm-boo-LAHN-tsah'],
+ de:['Rufen Sie einen Krankenwagen!','ROO-fen zee AI-nen KRAHN-ken-vah-gen'],pt:['Chame uma ambulância!','SHAH-mee OO-mah ahm-boo-LAHN-syah'],nl:['Bel een ambulance!','bel ayn ahm-boo-LAHN-suh'],
+ ja:['救急車を呼んでください','kyoo-KYOO-shah oh yohn-deh koo-dah-SAI'],zh:['请叫救护车！','cheeng jyow jyoh-HOO-chuh'],
+ hi:['एम्बुलेंस बुलाइए!','AM-bu-lens boo-LAH-ee-ay'],ar:['اتصل بالإسعاف!','it-TAH-sil bil-is-AHF'],
+ th:['เรียกรถพยาบาล!','RIAK rot pah-yah-BAHN'],ko:['구급차를 불러 주세요!','goo-goop-chah-rool bool-luh joo-say-yo']},
+{id:'doctor',cat:'emergencies',en:'I need a doctor',
+ es:['Necesito un médico','neh-seh-SEE-toh oon MEH-dee-koh'],fr:['J\u2019ai besoin d\u2019un médecin','zhay buh-ZWAHN dung mayd-SANG'],it:['Ho bisogno di un medico','oh bee-ZOHN-yoh dee oon MEH-dee-koh'],
+ de:['Ich brauche einen Arzt','ikh BROW-khuh AI-nen ahrtst'],pt:['Preciso de um médico','preh-SEE-zoo jee oong MEH-jee-koo'],nl:['Ik heb een dokter nodig','ik heb ayn DOK-ter NOH-dikh'],
+ ja:['医者が必要です','ee-SHAH gah hee-TSOO-yoh des'],zh:['我需要医生','wuh shoo-YOW ee-shung'],
+ hi:['मुझे डॉक्टर चाहिए','MOOJ-heh DOK-tur CHAH-hee-ay'],ar:['أحتاج إلى طبيب','AHT-tah-joo EE-lah tah-BEEB'],
+ th:['ฉันต้องการหมอ','chan taung-GAHN MOR'],ko:['의사가 필요해요','wee-sah-gah peel-yoh-heh-yo']},
+{id:'sick',cat:'emergencies',en:'I\u2019m sick',
+ es:['Estoy enfermo','ehs-TOY en-FAIR-moh'],fr:['Je suis malade','zhuh swee mah-LAHD'],it:['Sono malato','SOH-noh mah-LAH-toh'],
+ de:['Mir ist schlecht','meer ist shlekht'],pt:['Estou doente','ehs-TOH doo-EN-chee'],nl:['Ik ben ziek','ik ben zeek'],
+ ja:['気分が悪いです','kee-BOON gah wah-ROO-ee des'],zh:['我生病了','wuh shung-BEENG luh'],
+ hi:['मैं बीमार हूँ','main bee-MAHR hoon'],ar:['أنا مريض','AH-nah mah-REED'],
+ th:['ฉันไม่สบาย','chan mai sah-BAI'],ko:['아파요','ah-pah-yo']},
+{id:'hospital',cat:'emergencies',en:'Where is the hospital?',
+ es:['¿Dónde está el hospital?','DOHN-deh ehs-TAH el ohs-pee-TAHL'],fr:['Où est l\u2019hôpital ?','oo EH loh-pee-TAHL'],it:['Dov\u2019è l\u2019ospedale?','doh-VEH lohs-peh-DAH-leh'],
+ de:['Wo ist das Krankenhaus?','voh ist dahs KRAHN-ken-hows'],pt:['Onde fica o hospital?','OHN-jee FEE-kah oo ohs-pee-TAHL'],nl:['Waar is het ziekenhuis?','vahr is het ZEE-kun-hois'],
+ ja:['病院はどこですか','byoh-EEN wah DOH-koh des-kah'],zh:['医院在哪里？','ee-YOO-ahn zai nah-LEE'],
+ hi:['अस्पताल कहाँ है?','uhs-pah-TAHL kah-HAHN hai'],ar:['أين المستشفى؟','AY-nah al-moos-TASH-fah'],
+ th:['โรงพยาบาลอยู่ที่ไหน','rohng-pah-yah-BAHN yoo TEE nai'],ko:['병원은 어디예요?','byung-wuhn-oon uh-dee-yeh-yo']},
+{id:'pharmacy',cat:'emergencies',en:'Where is the pharmacy?',
+ es:['¿Dónde está la farmacia?','DOHN-deh ehs-TAH lah fahr-MAH-syah'],fr:['Où est la pharmacie ?','oo EH lah fahr-mah-SEE'],it:['Dov\u2019è la farmacia?','doh-VEH lah fahr-mah-CHEE-ah'],
+ de:['Wo ist die Apotheke?','voh ist dee ah-poh-TAY-kuh'],pt:['Onde fica a farmácia?','OHN-jee FEE-kah ah fahr-MAH-syah'],nl:['Waar is de apotheek?','vahr is duh ah-poh-TAYK'],
+ ja:['薬局はどこですか','yah-KYOH-koo wah DOH-koh des-kah'],zh:['药店在哪里？','yow-DYEN zai nah-LEE'],
+ hi:['दवाख़ाना कहाँ है?','dah-vah-KHAH-nah kah-HAHN hai'],ar:['أين الصيدلية؟','AY-nah as-sai-dah-LEE-yah'],
+ th:['ร้านขายยาอยู่ที่ไหน','RAHN-kai-yah yoo TEE nai'],ko:['약국은 어디예요?','yah-goo-goon uh-dee-yeh-yo']},
+{id:'emergency-number',cat:'emergencies',en:'What\u2019s the emergency number?',
+ es:['¿Número de emergencias?','NOO-meh-roh deh eh-mair-KHEN-syahs'],fr:['Numéro d\u2019urgence ?','noo-may-ROH door-ZHAHNSS'],it:['Numero di emergenza?','NOO-meh-roh dee eh-mair-JEN-tsah'],
+ de:['Notrufnummer?','NOHT-roof-noom-mer'],pt:['Número de emergência?','NOO-meh-roo jee eh-mair-ZHEN-syah'],nl:['Alarmnummer?','ah-LAHRM-noom-mer'],
+ ja:['緊急番号は？','keen-KYOO bahn-GOH wah'],zh:['急救电话是多少？','jee-jyoh DYEN-hwah shir dwuh-SHOW'],
+ hi:['आपातकालीन नंबर क्या है?','ah-paht-kah-LEEN number KYAH hai'],ar:['ما هو رقم الطوارئ؟','mah HOO-wah RAH-qahm at-tah-WAH-ree'],
+ th:['เบอร์ฉุกเฉินคืออะไร','BUR-chook-CHERN keu ah-RAI'],ko:['긴급 전화번호가 뭐예요?','geen-geup juhn-hwah-bun-hoh-gah mwoh-yeh-yo']},
+{id:'num-1',cat:'numbers',en:'One',
+ es:['Uno','OO-noh'],fr:['Un','ung'],it:['Uno','OO-noh'],
+ de:['Eins','ains'],pt:['Um','oong'],nl:['Een','ayn'],
+ ja:['一','ee-CHEE'],zh:['一','ee'],
+ hi:['एक','ek'],ar:['واحد','WAH-heed'],
+ th:['หนึ่ง','NOONNG'],ko:['일','eel']},
+{id:'num-2',cat:'numbers',en:'Two',
+ es:['Dos','dohs'],fr:['Deux','DUH'],it:['Due','DOO-eh'],
+ de:['Zwei','tsvai'],pt:['Dois','doysh'],nl:['Twee','tway'],
+ ja:['二','nee'],zh:['二','ahr'],
+ hi:['दो','doh'],ar:['اثنان','ith-NAHN'],
+ th:['สอง','SONG'],ko:['이','ee']},
+{id:'num-3',cat:'numbers',en:'Three',
+ es:['Tres','trehs'],fr:['Trois','trwah'],it:['Tre','treh'],
+ de:['Drei','drai'],pt:['Três','traysh'],nl:['Drie','dree'],
+ ja:['三','sahn'],zh:['三','sahn'],
+ hi:['तीन','teen'],ar:['ثلاثة','thah-LAH-thah'],
+ th:['สาม','SAHM'],ko:['삼','sahm']},
+{id:'num-4',cat:'numbers',en:'Four',
+ es:['Cuatro','KWAH-troh'],fr:['Quatre','kahtr'],it:['Quattro','KWAT-troh'],
+ de:['Vier','feer'],pt:['Quatro','KWAH-troo'],nl:['Vier','feer'],
+ ja:['四','yon'],zh:['四','ssir'],
+ hi:['चार','chaar'],ar:['أربعة','AR-bah-ah'],
+ th:['สี่','SEE'],ko:['사','sah']},
+{id:'num-5',cat:'numbers',en:'Five',
+ es:['Cinco','SEEN-koh'],fr:['Cinq','sangk'],it:['Cinque','CHEEN-kweh'],
+ de:['Fünf','foonf'],pt:['Cinco','SEEN-koo'],nl:['Vijf','faif'],
+ ja:['五','goh'],zh:['五','woo'],
+ hi:['पाँच','paanch'],ar:['خمسة','KHAHM-sah'],
+ th:['ห้า','HAH'],ko:['오','oh']},
+{id:'num-6',cat:'numbers',en:'Six',
+ es:['Seis','sais'],fr:['Six','seess'],it:['Sei','SAY'],
+ de:['Sechs','zeks'],pt:['Seis','saysh'],nl:['Zes','zes'],
+ ja:['六','roh-koo'],zh:['六','lyoh'],
+ hi:['छह','chhah'],ar:['ستة','SIT-tah'],
+ th:['หก','HOK'],ko:['육','yook']},
+{id:'num-7',cat:'numbers',en:'Seven',
+ es:['Siete','SYEH-teh'],fr:['Sept','set'],it:['Sette','SET-teh'],
+ de:['Sieben','ZEE-ben'],pt:['Sete','SEH-chee'],nl:['Zeven','ZAY-vun'],
+ ja:['七','nah-nah'],zh:['七','chee'],
+ hi:['सात','saat'],ar:['سبعة','SAB-ah'],
+ th:['เจ็ด','JET'],ko:['칠','cheel']},
+{id:'num-8',cat:'numbers',en:'Eight',
+ es:['Ocho','OH-choh'],fr:['Huit','weet'],it:['Otto','OHT-toh'],
+ de:['Acht','ahkht'],pt:['Oito','OY-too'],nl:['Acht','ahkht'],
+ ja:['八','hah-chee'],zh:['八','bah'],
+ hi:['आठ','aath'],ar:['ثمانية','thah-MAH-nee-yah'],
+ th:['แปด','PET'],ko:['팔','pahl']},
+{id:'num-9',cat:'numbers',en:'Nine',
+ es:['Nueve','NWEH-veh'],fr:['Neuf','nurf'],it:['Nove','NOH-veh'],
+ de:['Neun','noyn'],pt:['Nove','NOH-vee'],nl:['Negen','NAY-khun'],
+ ja:['九','kyoo'],zh:['九','jyoh'],
+ hi:['नौ','nau'],ar:['تسعة','TIS-ah'],
+ th:['เก้า','GOW'],ko:['구','goo']},
+{id:'num-10',cat:'numbers',en:'Ten',
+ es:['Diez','dee-EHS'],fr:['Dix','deess'],it:['Dieci','DYEH-chee'],
+ de:['Zehn','tsayn'],pt:['Dez','daysh'],nl:['Tien','teen'],
+ ja:['十','joo'],zh:['十','shir'],
+ hi:['दस','dus'],ar:['عشرة','AH-shah-rah'],
+ th:['สิบ','SIP'],ko:['십','sheep']},
+{id:'num-100',cat:'numbers',en:'One hundred',
+ es:['Cien','syen'],fr:['Cent','sahn'],it:['Cento','CHEN-toh'],
+ de:['Hundert','HOON-dert'],pt:['Cem','sayng'],nl:['Honderd','HON-dert'],
+ ja:['百','hyah-koo'],zh:['百','bai'],
+ hi:['सौ','sau'],ar:['مائة','MEE-ah'],
+ th:['ร้อย','ROI'],ko:['백','bek']},
+{id:'num-1000',cat:'numbers',en:'One thousand',
+ es:['Mil','meel'],fr:['Mille','meel'],it:['Mille','MEEL-leh'],
+ de:['Tausend','TOW-zent'],pt:['Mil','meel'],nl:['Duizend','DOI-zent'],
+ ja:['千','sen'],zh:['千','chyEN'],
+ hi:['हज़ार','hah-ZAHR'],ar:['ألف','ALF'],
+ th:['พัน','PAHN'],ko:['천','chun']},
+{id:'what-time',cat:'time',en:'What time is it?',
+ es:['¿Qué hora es?','keh OH-rah ehs'],fr:['Quelle heure est-il ?','kel eur eh-TEEL'],it:['Che ore sono?','keh OH-reh SOH-noh'],
+ de:['Wie viel Uhr ist es?','vee feel oor ist es'],pt:['Que horas são?','kee OH-rahs sown'],nl:['Hoe laat is het?','hoo laht is het'],
+ ja:['今何時ですか','ee-mah NAHN-jee des-kah'],zh:['现在几点？','shyehn-ZAI jee-DYEN'],
+ hi:['कितने बजे हैं?','KIT-nay BUH-jay hain'],ar:['كم الساعة؟','kahm as-SAH-ah'],
+ th:['กี่โมงแล้ว','GEE-mohng leo'],ko:['지금 몇 시예요?','jee-goom myuht shee-yeh-yo']},
+{id:'today',cat:'time',en:'Today',
+ es:['Hoy','oy'],fr:['Aujourd\u2019hui','oh-zhoor-DWEE'],it:['Oggi','OHJ-jee'],
+ de:['Heute','HOY-tuh'],pt:['Hoje','OH-zhee'],nl:['Vandaag','vahn-DAHKH'],
+ ja:['今日','kyoh'],zh:['今天','jeen-tee-ahn'],
+ hi:['आज','aaj'],ar:['اليوم','al-YOHM'],
+ th:['วันนี้','wahn-NEE'],ko:['오늘','oh-nool']},
+{id:'tomorrow',cat:'time',en:'Tomorrow',
+ es:['Mañana','mahn-YAH-nah'],fr:['Demain','duh-MANG'],it:['Domani','doh-MAH-nee'],
+ de:['Morgen','MOR-gen'],pt:['Amanhã','ah-mahn-YAHNG'],nl:['Morgen','MOR-khun'],
+ ja:['明日','ah-shee-TAH'],zh:['明天','meeng-tee-ahn'],
+ hi:['कल','kahl'],ar:['غداً','GHAH-dahn'],
+ th:['พรุ่งนี้','PROONG-nee'],ko:['내일','neh-eel']},
+{id:'yesterday',cat:'time',en:'Yesterday',
+ es:['Ayer','ah-YAIR'],fr:['Hier','yair'],it:['Ieri','YEH-ree'],
+ de:['Gestern','GES-tern'],pt:['Ontem','OHN-tayng'],nl:['Gisteren','KHIS-tuh-run'],
+ ja:['昨日','kee-NOH'],zh:['昨天','zwoh-tee-ahn'],
+ hi:['बीता कल','BEE-tah kahl'],ar:['أمس','AMS'],
+ th:['เมื่อวาน','MOO-ah-wahn'],ko:['어제','uh-jeh']},
+{id:'now',cat:'time',en:'Now',
+ es:['Ahora','ah-OH-rah'],fr:['Maintenant','mangt-NAHN'],it:['Adesso','ah-DES-soh'],
+ de:['Jetzt','yetst'],pt:['Agora','ah-GOH-rah'],nl:['Nu','noo'],
+ ja:['今','ee-mah'],zh:['现在','shyehn-ZAI'],
+ hi:['अभी','ah-BHEE'],ar:['الآن','al-AHN'],
+ th:['ตอนนี้','ton-NEE'],ko:['지금','jee-goom']},
+{id:'later',cat:'time',en:'Later',
+ es:['Más tarde','mahs TAHR-deh'],fr:['Plus tard','ploo TAHR'],it:['Più tardi','pyoo TAHR-dee'],
+ de:['Später','SHPAY-ter'],pt:['Mais tarde','mais TAHR-jee'],nl:['Later','LAH-ter'],
+ ja:['後で','ah-toh-DEH'],zh:['以後','ee-HOH'],
+ hi:['बाद में','baad main'],ar:['لاحقاً','lah-hee-QAHN'],
+ th:['ทีหลัง','tee-LAHNG'],ko:['나중에','nah-joong-eh']},
+{id:'in-the-morning',cat:'time',en:'In the morning',
+ es:['Por la mañana','por lah mahn-YAH-nah'],fr:['Le matin','luh mah-TANG'],it:['La mattina','lah maht-TEE-nah'],
+ de:['Am Morgen','ahm MOR-gen'],pt:['De manhã','jee mahn-YAHNG'],nl:['\u2019s Ochtends','sokh-tents'],
+ ja:['朝','AH-sah'],zh:['早上','zow-SHAHNG'],
+ hi:['सुबह','soo-BAH'],ar:['في الصباح','fee as-sah-BAHH'],
+ th:['ตอนเช้า','ton-CHOW'],ko:['아침에','ah-cheem-eh']},
+{id:'tonight',cat:'time',en:'Tonight',
+ es:['Esta noche','EHS-tah NOH-cheh'],fr:['Ce soir','suh SWAHR'],it:['Stasera','stah-SEH-rah'],
+ de:['Heute Abend','HOY-tuh AH-bent'],pt:['Hoje à noite','OH-zhee ah NOY-chee'],nl:['Vanavond','vahn-AH-vont'],
+ ja:['今夜','kon-YAH'],zh:['今晚','jeen-WAHN'],
+ hi:['आज रात','aaj RAHT'],ar:['الليلة','al-LAY-lah'],
+ th:['คืนนี้','keun-NEE'],ko:['오늘 밤','oh-nool bahm']}
+];
+
+/* ===================== pure API ===================== */
+
+function ppLanguages() {
+  return PP_LANGS.map(function (l) { return { code: l.code, name: l.name, tts: l.tts, flag: l.flag }; });
+}
+
+function ppLang(code) {
+  if (typeof code !== 'string') return null;
+  var c = code.trim().toLowerCase();
+  for (var i = 0; i < PP_LANGS.length; i++) {
+    if (PP_LANGS[i].code === c) return { code: PP_LANGS[i].code, name: PP_LANGS[i].name, tts: PP_LANGS[i].tts, flag: PP_LANGS[i].flag };
+  }
+  return null;
+}
+
+function ppCategories() {
+  return PP_CATS.map(function (c) { return { id: c.id, name: c.name }; });
+}
+
+function ppCat(id) {
+  if (typeof id !== 'string') return null;
+  for (var i = 0; i < PP_CATS.length; i++) {
+    if (PP_CATS[i].id === id) return { id: PP_CATS[i].id, name: PP_CATS[i].name };
+  }
+  return null;
+}
+
+/* All phrases, or filtered by category id (unknown category -> empty list). */
+function ppPhrases(catId) {
+  if (catId === undefined || catId === null || catId === '') return PP_PHRASES.slice();
+  return PP_PHRASES.filter(function (p) { return p.cat === catId; });
+}
+
+function ppPhrase(id) {
+  if (typeof id !== 'string') return null;
+  for (var i = 0; i < PP_PHRASES.length; i++) {
+    if (PP_PHRASES[i].id === id) return PP_PHRASES[i];
+  }
+  return null;
+}
+
+/* { native, phonetic } for a phrase in a language, or null on unknown id/lang. */
+function ppText(phrase, langCode) {
+  if (!phrase || typeof langCode !== 'string') return null;
+  var c = langCode.trim().toLowerCase();
+  var pair = phrase[c];
+  if (!Array.isArray(pair) || pair.length < 2) return null;
+  return { native: pair[0], phonetic: pair[1] };
+}
+
+function ppTtsLocale(langCode) {
+  var l = ppLang(langCode);
+  return l ? l.tts : null;
+}
+
+/* Case-insensitive search across English, native script and phonetic for a language.
+   Empty query returns all phrases. Unknown language -> search English only. */
+function ppSearch(q, langCode) {
+  var needle = (q === undefined || q === null) ? '' : String(q).trim().toLowerCase();
+  var lang = ppLang(langCode);
+  var lc = lang ? lang.code : null;
+  if (!needle) return PP_PHRASES.slice();
+  return PP_PHRASES.filter(function (p) {
+    if (p.en.toLowerCase().indexOf(needle) !== -1) return true;
+    if (lc) {
+      var t = ppText(p, lc);
+      if (t && (t.native.toLowerCase().indexOf(needle) !== -1 || t.phonetic.toLowerCase().indexOf(needle) !== -1)) return true;
+    }
+    return false;
+  });
+}
+
+/* ---------- favorites (pure list transforms; persistence in UI layer) ---------- */
+function ppIsFav(favs, id) {
+  if (!Array.isArray(favs) || typeof id !== 'string') return false;
+  return favs.indexOf(id) !== -1;
+}
+
+function ppFavToggle(favs, id) {
+  if (!Array.isArray(favs)) favs = [];
+  if (typeof id !== 'string' || !ppPhrase(id)) return favs.slice();
+  var i = favs.indexOf(id);
+  var out = favs.slice();
+  if (i === -1) out.push(id); else out.splice(i, 1);
+  return out;
+}
+
+/* ---------- deterministic RNG + shuffle (seeded so quizzes are testable) ---------- */
+function ppRand(seed) {
+  var a = (typeof seed === 'number' ? seed : 0) >>> 0;
+  return function () {
+    a |= 0; a = (a + 0x6D2B79F5) | 0;
+    var t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+function ppShuffle(arr, seed) {
+  var out = Array.isArray(arr) ? arr.slice() : [];
+  var rand = ppRand(seed);
+  for (var i = out.length - 1; i > 0; i--) {
+    var j = Math.floor(rand() * (i + 1));
+    var tmp = out[i]; out[i] = out[j]; out[j] = tmp;
+  }
+  return out;
+}
+
+/* Build a flashcard quiz: `count` unique phrase ids in shuffled order.
+   count <= 0 -> empty; count > available -> all phrases. */
+function ppBuildQuiz(langCode, count, seed) {
+  if (!ppLang(langCode)) return [];
+  var n = Math.floor(Number(count));
+  if (!(n > 0)) return [];
+  var ids = ppShuffle(PP_PHRASES.map(function (p) { return p.id; }), seed);
+  return ids.slice(0, Math.min(n, ids.length));
+}
+
+/* answers: [{ id, knew: bool }]. Returns { correct, total, pct (0-100 int) }. */
+function ppScoreQuiz(answers) {
+  if (!Array.isArray(answers) || answers.length === 0) return { correct: 0, total: 0, pct: 0 };
+  var correct = 0;
+  for (var i = 0; i < answers.length; i++) {
+    if (answers[i] && answers[i].knew === true) correct++;
+  }
+  var total = answers.length;
+  return { correct: correct, total: total, pct: Math.round((correct / total) * 100) };
+}
+
+function ppGrade(pct) {
+  var p = Number(pct);
+  if (!(p >= 0)) return '—';
+  if (p >= 90) return 'Fluent';
+  if (p >= 70) return 'Conversational';
+  if (p >= 50) return 'Getting there';
+  return 'Keep practicing';
+}
+
+/* ---------- per-language quiz progress (pure object transform) ----------
+   progress shape: { <langCode>: { attempts, best, last, correct, answered } } */
+function ppProgressFor(progress, langCode) {
+  var l = ppLang(langCode);
+  if (!l) return { attempts: 0, best: 0, last: 0, correct: 0, answered: 0 };
+  var e = (progress && typeof progress === 'object') ? progress[l.code] : null;
+  if (!e || typeof e !== 'object') return { attempts: 0, best: 0, last: 0, correct: 0, answered: 0 };
+  return {
+    attempts: e.attempts > 0 ? Math.floor(e.attempts) : 0,
+    best:     e.best > 0 ? Math.min(100, Math.floor(e.best)) : 0,
+    last:     e.last > 0 ? Math.min(100, Math.floor(e.last)) : 0,
+    correct:  e.correct > 0 ? Math.floor(e.correct) : 0,
+    answered: e.answered > 0 ? Math.floor(e.answered) : 0
+  };
+}
+
+function ppRecordQuiz(progress, langCode, correct, total) {
+  var l = ppLang(langCode);
+  var out = (progress && typeof progress === 'object') ? JSON.parse(JSON.stringify(progress)) : {};
+  if (!l) return out;
+  var c = Math.max(0, Math.floor(Number(correct)) || 0);
+  var t = Math.max(0, Math.floor(Number(total)) || 0);
+  if (t === 0) return out;
+  var pct = Math.round((c / t) * 100);
+  var e = ppProgressFor(out, l.code);
+  out[l.code] = {
+    attempts: e.attempts + 1,
+    best: Math.max(e.best, pct),
+    last: pct,
+    correct: e.correct + c,
+    answered: e.answered + t
+  };
+  return out;
+}
+
+/* How many of the 12 languages have at least one phrase (dataset integrity). */
+function ppCoverage() {
+  var perLang = {};
+  PP_LANGS.forEach(function (l) { perLang[l.code] = 0; });
+  PP_PHRASES.forEach(function (p) {
+    PP_LANGS.forEach(function (l) {
+      if (ppText(p, l.code)) perLang[l.code]++;
+    });
+  });
+  return { languages: PP_LANGS.length, phrases: PP_PHRASES.length, perLang: perLang };
+}
+
+</script>
+
+<!-- ================= UI WIRING (DOM + speech; not part of tested lib) ================= -->
+<script>
+(function () {
+  'use strict';
+
+  var LANGS = ppLanguages();
+  var CATS = ppCategories();
+
+  var LS = { lang: 'pp-lang', favs: 'pp-favs', prog: 'pp-progress', slow: 'pp-slow' };
+  function load(k, d) { try { var v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } }
+  function save(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+
+  var state = {
+    lang: load(LS.lang, 'es'),
+    favs: load(LS.favs, []),
+    progress: load(LS.prog, {}),
+    slow: load(LS.slow, false),
+    cat: '',
+    q: '',
+    favOnly: false,
+    view: 'phrases',
+    quizSize: 20,
+    quizIds: [],
+    quizIdx: 0,
+    quizAnswers: [],
+    quizKnown: 0,
+    queue: []
+  };
+  if (!ppLang(state.lang)) state.lang = 'es';
+
+  function $(id) { return document.getElementById(id); }
+
+  function esc(s) {
+    return String(s === undefined || s === null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+
+  /* ---------- TTS (Web Speech API; voice quality varies by browser) ---------- */
+  var voices = [];
+  function pickVoices() {
+    try { voices = window.speechSynthesis ? window.speechSynthesis.getVoices() : []; } catch (e) { voices = []; }
+  }
+  pickVoices();
+  if (window.speechSynthesis && window.speechSynthesis.onvoiceschanged !== undefined) {
+    window.speechSynthesis.onvoiceschanged = pickVoices;
+  }
+
+  function speak(text, langCode, btn) {
+    if (!('speechSynthesis' in window)) {
+      alert('Sorry, your browser does not support speech playback.');
+      return;
+    }
+    window.speechSynthesis.cancel();
+    var u = new SpeechSynthesisUtterance(text);
+    var locale = ppTtsLocale(langCode) || 'en-US';
+    u.lang = locale;
+    u.rate = state.slow ? 0.65 : 1.0;
+    var match = null;
+    for (var i = 0; i < voices.length; i++) {
+      if (voices[i].lang && voices[i].lang.toLowerCase().indexOf(locale.toLowerCase().slice(0, 2)) === 0) { match = voices[i]; break; }
+    }
+    if (!match) {
+      for (var j = 0; j < voices.length; j++) {
+        if (voices[j].lang && voices[j].lang.toLowerCase() === locale.toLowerCase()) { match = voices[j]; break; }
+      }
+    }
+    if (match) u.voice = match;
+    if (btn) {
+      btn.classList.add('speaking');
+      u.onend = u.onerror = function () { btn.classList.remove('speaking'); };
+    }
+    window.speechSynthesis.speak(u);
+  }
+
+  function playQueue(texts, langCode) {
+    if (!('speechSynthesis' in window)) { alert('Sorry, your browser does not support speech playback.'); return; }
+    window.speechSynthesis.cancel();
+    var i = 0;
+    function next() {
+      if (i >= texts.length) return;
+      var u = new SpeechSynthesisUtterance(texts[i]);
+      u.lang = ppTtsLocale(langCode) || 'en-US';
+      u.rate = state.slow ? 0.65 : 1.0;
+      u.onend = function () { i++; next(); };
+      u.onerror = function () { i++; next(); };
+      window.speechSynthesis.speak(u);
+    }
+    next();
+  }
+
+  /* ---------- language picker ---------- */
+  function renderLangPicker() {
+    var el = $('langPicker');
+    el.innerHTML = '';
+    LANGS.forEach(function (l) {
+      var b = document.createElement('button');
+      b.className = 'lang-btn rounded-xl border border-[#2b3a5f] px-2 py-2 text-sm font-semibold text-slate-200 hover:border-[#22d3ee]' + (l.code === state.lang ? ' active' : '');
+      b.innerHTML = '<span class="text-lg">' + l.flag + '</span><br>' + esc(l.name);
+      b.setAttribute('aria-label', 'Switch to ' + l.name);
+      b.addEventListener('click', function () {
+        state.lang = l.code;
+        save(LS.lang, l.code);
+        renderLangPicker();
+        renderPhrases();
+        renderQuizLang();
+      });
+      el.appendChild(b);
+    });
+    $('langName').textContent = ppLang(state.lang).name;
+    $('quizLangName').textContent = ppLang(state.lang).name;
+  }
+
+  /* ---------- category pills ---------- */
+  function renderCatBar() {
+    var el = $('catBar');
+    el.innerHTML = '';
+    function pill(id, name) {
+      var b = document.createElement('button');
+      b.className = 'cat-pill rounded-full border border-[#2b3a5f] px-3.5 py-1.5 text-xs font-semibold text-slate-300 hover:border-[#fb7185]' + (state.cat === id ? ' active' : '');
+      b.textContent = name;
+      b.addEventListener('click', function () { state.cat = id; renderCatBar(); renderPhrases(); });
+      el.appendChild(b);
+    }
+    pill('', 'All');
+    CATS.forEach(function (c) { pill(c.id, c.name); });
+  }
+
+  /* ---------- phrase cards ---------- */
+  function visiblePhrases() {
+    var list = ppSearch(state.q, state.lang);
+    if (state.cat) list = list.filter(function (p) { return p.cat === state.cat; });
+    if (state.favOnly) list = list.filter(function (p) { return ppIsFav(state.favs, p.id); });
+    return list;
+  }
+
+  function cardHTML(p) {
+    var t = ppText(p, state.lang) || { native: '', phonetic: '' };
+    var fav = ppIsFav(state.favs, p.id);
+    var cat = ppCat(p.cat);
+    return '<div class="panel card-hover rounded-xl p-4 flex flex-col gap-2" data-pid="' + esc(p.id) + '">' +
+      '<div class="flex items-start justify-between gap-2">' +
+        '<div><p class="font-semibold text-sm">' + esc(p.en) + '</p>' +
+        '<p class="text-[11px] text-slate-500">' + esc(cat ? cat.name : '') + '</p></div>' +
+        '<button class="fav-btn shrink-0 rounded-full px-2 py-1 text-lg leading-none" data-fav="' + esc(p.id) + '" aria-label="Toggle favorite">' +
+          (fav ? '❤️' : '<span class="opacity-40">🤍</span>') + '</button>' +
+      '</div>' +
+      '<p class="text-2xl font-bold" dir="auto">' + esc(t.native) + '</p>' +
+      '<p class="text-sm italic text-[#fb7185]">' + esc(t.phonetic) + '</p>' +
+      '<div class="mt-auto pt-1 flex gap-2">' +
+        '<button class="speak-btn flex-1 rounded-lg bg-[#22d3ee]/15 border border-[#22d3ee]/50 text-[#22d3ee] py-1.5 text-sm font-semibold" data-speak="' + esc(p.id) + '">🔊 Listen</button>' +
+      '</div></div>';
+  }
+
+  function renderPhrases() {
+    var grid = $('phraseGrid');
+    var list = visiblePhrases();
+    grid.innerHTML = list.map(cardHTML).join('');
+    $('emptyMsg').classList.toggle('hidden', list.length > 0);
+    $('favCount').textContent = '(' + state.favs.length + ')';
+  }
+
+  function renderFavorites() {
+    var grid = $('favGrid');
+    var list = state.favs.map(ppPhrase).filter(Boolean);
+    grid.innerHTML = list.map(cardHTML).join('');
+    $('favEmpty').classList.toggle('hidden', list.length > 0);
+  }
+
+  /* delegated clicks for speak + fav buttons (works in all views) */
+  document.addEventListener('click', function (e) {
+    var sp = e.target.closest ? e.target.closest('[data-speak]') : null;
+    if (sp) {
+      var p = ppPhrase(sp.getAttribute('data-speak'));
+      if (p) {
+        var t = ppText(p, state.lang);
+        if (t) speak(t.native, state.lang, sp);
+      }
+      return;
+    }
+    var fv = e.target.closest ? e.target.closest('[data-fav]') : null;
+    if (fv) {
+      state.favs = ppFavToggle(state.favs, fv.getAttribute('data-fav'));
+      save(LS.favs, state.favs);
+      renderPhrases();
+      renderFavorites();
+    }
+  });
+
+  /* ---------- tabs ---------- */
+  function setView(v) {
+    state.view = v;
+    $('viewPhrases').classList.toggle('hidden', v !== 'phrases');
+    $('viewQuiz').classList.toggle('hidden', v !== 'quiz');
+    $('viewFavorites').classList.toggle('hidden', v !== 'favorites');
+    $('tabPhrases').classList.toggle('active', v === 'phrases');
+    $('tabQuiz').classList.toggle('active', v === 'quiz');
+    $('tabFavorites').classList.toggle('active', v === 'favorites');
+    if (v === 'favorites') renderFavorites();
+    if (v === 'quiz') { renderQuizLang(); renderProgressStats(); }
+  }
+  $('tabPhrases').addEventListener('click', function () { setView('phrases'); });
+  $('tabQuiz').addEventListener('click', function () { setView('quiz'); });
+  $('tabFavorites').addEventListener('click', function () { setView('favorites'); });
+
+  /* ---------- search / filters ---------- */
+  var searchTimer = null;
+  $('searchInput').addEventListener('input', function (e) {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(function () { state.q = e.target.value; renderPhrases(); }, 160);
+  });
+  $('favOnly').addEventListener('change', function (e) { state.favOnly = e.target.checked; renderPhrases(); });
+  $('speakAllBtn').addEventListener('click', function () {
+    var texts = visiblePhrases().slice(0, 30).map(function (p) { var t = ppText(p, state.lang); return t ? t.native : ''; }).filter(Boolean);
+    if (!texts.length) { alert('Nothing to play in the current view.'); return; }
+    playQueue(texts, state.lang);
+  });
+
+  /* ---------- slow toggle ---------- */
+  function renderSlow() {
+    var on = !!state.slow;
+    $('slowToggle').setAttribute('aria-checked', on ? 'true' : 'false');
+    $('slowToggle').classList.toggle('bg-[#22d3ee]', on);
+    $('slowToggle').classList.toggle('bg-[#2b3a5f]', !on);
+    var dot = $('slowToggle').querySelector('.toggle-dot');
+    if (dot) dot.style.transform = on ? 'translateX(20px)' : 'translateX(0)';
+  }
+  $('slowToggle').addEventListener('click', function () {
+    state.slow = !state.slow;
+    save(LS.slow, state.slow);
+    renderSlow();
+  });
+
+  /* ---------- quiz ---------- */
+  function renderQuizLang() {
+    var name = ppLang(state.lang).name;
+    $('quizLangName').textContent = name;
+    var els = document.querySelectorAll('#viewQuiz .q-lang');
+    for (var i = 0; i < els.length; i++) els[i].textContent = name;
+  }
+
+  var qnBtns = document.querySelectorAll('.qn-btn');
+  qnBtns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      state.quizSize = parseInt(b.getAttribute('data-qn'), 10) || 20;
+      qnBtns.forEach(function (x) {
+        x.classList.remove('border-[#22d3ee]', 'bg-[#22d3ee]/10');
+        x.classList.add('border-[#2b3a5f]');
+      });
+      b.classList.add('border-[#22d3ee]', 'bg-[#22d3ee]/10');
+      b.classList.remove('border-[#2b3a5f]');
+    });
+  });
+
+  function startQuiz() {
+    state.quizIds = ppBuildQuiz(state.lang, state.quizSize, Date.now() % 2147483647);
+    state.quizIdx = 0;
+    state.quizAnswers = [];
+    state.quizKnown = 0;
+    $('quizSetup').classList.add('hidden');
+    $('quizDone').classList.add('hidden');
+    $('quizPlay').classList.remove('hidden');
+    showQuizCard();
+  }
+
+  function showQuizCard() {
+    var id = state.quizIds[state.quizIdx];
+    var p = ppPhrase(id);
+    if (!p) { finishQuiz(); return; }
+    $('quizEn').textContent = p.en;
+    var cat = ppCat(p.cat);
+    $('quizCat').textContent = cat ? cat.name : '';
+    $('quizInner').classList.remove('flipped');
+    $('quizMarkRow').classList.add('hidden');
+    $('quizMarkRow').classList.remove('grid');
+    $('quizFlipBtn').classList.remove('hidden');
+    var t = ppText(p, state.lang);
+    $('quizNative').textContent = t ? t.native : '';
+    $('quizNative').setAttribute('dir', 'auto');
+    $('quizPhon').textContent = t ? t.phonetic : '';
+    $('quizCounter').textContent = 'Card ' + (state.quizIdx + 1) + ' of ' + state.quizIds.length;
+    $('quizProgress').style.width = Math.round((state.quizIdx / state.quizIds.length) * 100) + '%';
+    $('quizLiveScore').textContent = state.quizKnown + ' known · ' + (state.quizAnswers.length - state.quizKnown) + ' learning';
+  }
+
+  function markAnswer(knew) {
+    var id = state.quizIds[state.quizIdx];
+    state.quizAnswers.push({ id: id, knew: knew });
+    if (knew) state.quizKnown++;
+    state.quizIdx++;
+    if (state.quizIdx >= state.quizIds.length) finishQuiz();
+    else showQuizCard();
+  }
+
+  function finishQuiz() {
+    var r = ppScoreQuiz(state.quizAnswers);
+    state.progress = ppRecordQuiz(state.progress, state.lang, r.correct, r.total);
+    save(LS.prog, state.progress);
+    $('quizPlay').classList.add('hidden');
+    $('quizDone').classList.remove('hidden');
+    $('quizScore').textContent = r.pct + '%';
+    $('quizGrade').textContent = ppGrade(r.pct);
+    $('quizSummary').textContent = 'You knew ' + r.correct + ' of ' + r.total + ' phrases in ' + ppLang(state.lang).name + '.';
+    renderProgressStats();
+  }
+
+  $('quizStart').addEventListener('click', startQuiz);
+  $('quizAgain').addEventListener('click', function () {
+    $('quizDone').classList.add('hidden');
+    $('quizSetup').classList.remove('hidden');
+  });
+  $('quizFlipBtn').addEventListener('click', function () {
+    $('quizInner').classList.add('flipped');
+    $('quizFlipBtn').classList.add('hidden');
+    $('quizMarkRow').classList.remove('hidden');
+    $('quizMarkRow').classList.add('grid');
+  });
+  $('quizKnew').addEventListener('click', function () { markAnswer(true); });
+  $('quizMissed').addEventListener('click', function () { markAnswer(false); });
+  $('quizSkipBtn').addEventListener('click', function () { markAnswer(false); });
+  $('quizSpeak').addEventListener('click', function (e) {
+    e.stopPropagation();
+    var t = $('quizNative').textContent;
+    if (t) speak(t, state.lang, $('quizSpeak'));
+  });
+
+  function renderProgressStats() {
+    var el = $('progressStats');
+    el.innerHTML = '';
+    LANGS.forEach(function (l) {
+      var p = ppProgressFor(state.progress, l.code);
+      var row = document.createElement('div');
+      row.className = 'rounded-lg border border-[#2b3a5f] px-3 py-2 text-xs flex items-center justify-between gap-2';
+      var bar = p.attempts > 0
+        ? '<div class="h-1.5 rounded-full bg-[#2b3a5f] mt-1 overflow-hidden"><div class="h-full rounded-full" style="width:' + p.best + '%;background:#22d3ee"></div></div>'
+        : '';
+      row.innerHTML = '<span class="font-semibold">' + l.flag + ' ' + esc(l.name) + '</span>' +
+        '<span class="text-right text-slate-400">' +
+        (p.attempts > 0 ? 'best <b class="text-[#22d3ee]">' + p.best + '%</b> · ' + p.attempts + ' quiz' + (p.attempts > 1 ? 'zes' : '') + bar : '<span class="opacity-60">not started</span>') +
+        '</span>';
+      el.appendChild(row);
+    });
+  }
+
+  /* ---------- init ---------- */
+  renderSlow();
+  renderLangPicker();
+  renderCatBar();
+  renderPhrases();
+  renderProgressStats();
+})();
+</script>
+</body>
+</html>
